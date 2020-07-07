@@ -5,11 +5,17 @@
     
     <entry>
       <title>Golang邮件发送</title>
-      <link href="/posts/uncategorized/4db013d1.html"/>
-      <url>/posts/uncategorized/4db013d1.html</url>
+      <link href="/posts/golang/4db013d1.html"/>
+      <url>/posts/golang/4db013d1.html</url>
       
         <content type="html"><![CDATA[<h1 id="golang发送邮件"><a href="#golang发送邮件" class="headerlink" title="golang发送邮件"></a>golang发送邮件</h1><h2 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h2><pre><code class="golang">go get github.com/jordan-wright/email</code></pre><h2 id="简单代码实现"><a href="#简单代码实现" class="headerlink" title="简单代码实现"></a>简单代码实现</h2><pre><code class="golang">package mainimport (    &quot;log&quot;    &quot;net/smtp&quot;    &quot;github.com/jordan-wright/email&quot;)func main() {    e := email.NewEmail()    //设置发送方的邮箱    e.From = &quot;112233 &lt;XXX@qq.com&gt;&quot;    // 设置接收方的邮箱    e.To = []string{&quot;XXX@qq.com&quot;}    //设置主题    e.Subject = &quot;这是主题&quot;    //设置文件发送的内容    e.Text = []byte(&quot;发送的内容&quot;)    //设置服务器相关的配置    err := e.Send(&quot;smtp.qq.com:25&quot;, smtp.PlainAuth(&quot;&quot;, &quot;你的邮箱账号&quot;, &quot;这块是你的授权码&quot;, &quot;smtp.qq.com&quot;))    if err != nil {       ....    }}</code></pre><h2 id="实现抄送功能"><a href="#实现抄送功能" class="headerlink" title="实现抄送功能"></a>实现抄送功能</h2><pre><code class="golang">func main() {    ...    //设置抄送如果抄送多人逗号隔开    e.Cc = []string{&quot;XXX@qq.com&quot;,XXX@qq.com}    //设置秘密抄送    e.Bcc = []string{&quot;XXX@qq.com&quot;}    ...}</code></pre><h2 id="发送html代码的邮件"><a href="#发送html代码的邮件" class="headerlink" title="发送html代码的邮件"></a>发送html代码的邮件</h2><pre><code class="golang">func main() {    ...    e.HTML = []byte(`    &lt;h1&gt;&lt;a href=&quot;http://www.baidu.com/&quot;&gt;百度&lt;/a&gt;&lt;/h1&gt;        `)    ...}</code></pre><h2 id="实现邮件附件的发送"><a href="#实现邮件附件的发送" class="headerlink" title="实现邮件附件的发送"></a>实现邮件附件的发送</h2><pre><code class="golang">func main() {    ...    e.AttachFile(&quot;./test.txt&quot;)    ...}</code></pre><h2 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h2><p>每次调用Send时都会和 SMTP 服务器建立一次连接，如果发送邮件很多很频繁的话可能会有性能问题。email提供了连接池，可以复用网络连接：</p><pre><code class="golang">package mainimport (    &quot;fmt&quot;    &quot;log&quot;    &quot;net/smtp&quot;    &quot;os&quot;    &quot;sync&quot;    &quot;time&quot;    &quot;github.com/jordan-wright/email&quot;)func main() {    ch := make(chan *email.Email, 10)    p, err := email.NewPool(        &quot;smtp.qq.com:25&quot;,        4,        smtp.PlainAuth(&quot;&quot;, &quot;XXX@qq.com&quot;, &quot;你的授权码&quot;, &quot;smtp.qq.com&quot;),    )    if err != nil {        log.Fatal(&quot;failed to create pool:&quot;, err)    }    var wg sync.WaitGroup    wg.Add(4)    for i := 0; i &lt; 4; i++ {        go func() {            defer wg.Done()            for e := range ch {                err := p.Send(e, 10*time.Second)                if err != nil {                    fmt.Fprintf(os.Stderr, &quot;email:%v sent error:%v\n&quot;, e, err)                }            }        }()    }    for i := 0; i &lt; 10; i++ {        e := email.NewEmail()        e.From = &quot;dj &lt;XXX@qq.com&gt;&quot;        e.To = []string{&quot;XXX@qq.com&quot;}        e.Subject = &quot;Awesome web&quot;        e.Text = []byte(fmt.Sprintf(&quot;Awesome Web %d&quot;, i+1))        ch &lt;- e    }    close(ch)    wg.Wait()}</code></pre><p>上面程序中，我们创建 4 goroutine 共用一个连接池发送邮件，发送 10 封邮件后程序退出。为了等邮件都发送完成或失败，程序才退出，我们使用了sync.WaitGroup。由于使用了 goroutine，邮件顺序不能保证。</p><p>参考连接：<a href="https://github.com/darjun/go-daily-lib" target="_blank" rel="noopener">https://github.com/darjun/go-daily-lib</a></p>]]></content>
       
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
       
       
         <tags>
