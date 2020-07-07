@@ -417,7 +417,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto: myxy99@foxmail.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -480,11 +480,41 @@
     <!-- Pages  -->
     
         <li>
-            <a href="/about" title="About">
+            <a href="/about" title="关于">
                 
                     <i class="material-icons sidebar-material-icons">person</i>
                 
-                About
+                关于
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/tags" title="标签云">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                标签云
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="友链">
+                
+                    <i class="material-icons sidebar-material-icons">face</i>
+                
+                友链
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/gallery" title="图库">
+                
+                    <i class="material-icons sidebar-material-icons">cloud_circle</i>
+                
+                图库
             </a>
         </li>
         
@@ -639,6 +669,11 @@ It will not impact the appearance and can give developers a lot of support :)
         <div id="copyright">
             Copyright&nbsp;©&nbsp;<span year></span>&nbsp;Yangzzz's Blog
             
+                <br>
+                
+                    <a href="http://beian.miit.gov.cn/" target="_blank" rel="nofollow noopener">蜀ICP备19008334号</a>
+                
+            
         </div>
 
         <!-- Paradox Footer Right Section -->
@@ -721,6 +756,10 @@ It will not impact the appearance and can give developers a lot of support :)
 <!-- Import prettify js  -->
 
 
+    
+        <script>lsloader.load("hanabi","/js/hanabi-browser-bundle.js?Pki5+pzkluqu53g+ouMWpA==", true)</script>
+    
+
 
 <!-- Window Load -->
 <!-- add class for prettify -->
@@ -731,6 +770,10 @@ It will not impact the appearance and can give developers a lot of support :)
     });
 
     
+    
+        
+        
+        HanabiBrowser.start('pre code',true);
     
 </script>
 
@@ -764,7 +807,7 @@ It will not impact the appearance and can give developers a lot of support :)
     var copyrightNow = new Date().getFullYear();
     var textContent = document.querySelector('span[year]')
 
-    copyrightSince = 0000;
+    copyrightSince = 2019;
     if (copyrightSince === copyrightNow||copyrightSince === 0000) {
         textContent.textContent = copyrightNow
     } else {
