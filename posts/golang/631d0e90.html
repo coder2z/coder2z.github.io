@@ -46,7 +46,7 @@
     
     <title>
         
-            归档: 2020 | 
+            Golang使用jwt | 
         
         Yangzzz&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Yangzzz&#34;s Blog">
-    <meta name="keywords" content="golang,php,python,程序员">
+    <meta name="keywords" content="golang,php,python,程序员,golang">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Yangzzz&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://myxy99.cn/archives/2020/">
+    <meta name="msapplication-starturl" content="https://myxy99.cn/posts/golang/631d0e90.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Yangzzz&#39;s Blog">
@@ -233,13 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://myxy99.cn/archives/2020/">
+    <meta property="og:url" content="https://myxy99.cn/posts/golang/631d0e90.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2020 | Yangzzz&#39;s Blog">
+    <meta property="og:title" content="Golang使用jwt | Yangzzz&#39;s Blog">
     <meta property="og:image" content="/img/user.png">
     <meta property="og:description" content="Yangzzz&#34;s Blog">
-    
+    <meta property="og:article:tag" content="golang"> 
 
+    
+        <meta property="article:published_time" content="Tue Jul 07 2020 20:35:19 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 21:05:53 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,13 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://myxy99.cn/archives/2020/index.html" />
+        <link rel="canonical" href="https://myxy99.cn/posts/golang/631d0e90.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://myxy99.cn/posts/golang/631d0e90.html",
+    "headline": "Golang使用jwt",
+    "datePublished": "Tue Jul 07 2020 20:35:19 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 21:05:53 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yangzzz",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/user.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Yangzzz&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/user.png"
+        }
+    },
+    "keywords": ",golanggolang,php,python,程序员",
+    "description": "Yangzzz&#34;s Blog",
+}
+</script>
 
 
     
@@ -287,279 +320,373 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Golang中使用JWT-json-web-token"><span class="post-toc-number">1.</span> <span class="post-toc-text">Golang中使用JWT(json web token)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#什么是jwt"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是jwt</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用步骤"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#下载依赖包"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">下载依赖包</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#编写代码"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">编写代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#配置文件"><span class="post-toc-number">1.2.2.1.</span> <span class="post-toc-text">配置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#golang代码"><span class="post-toc-number">1.2.2.2.</span> <span class="post-toc-text">golang代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#编写验证中间件"><span class="post-toc-number">1.2.2.3.</span> <span class="post-toc-text">编写验证中间件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#路由中使用"><span class="post-toc-number">1.2.2.4.</span> <span class="post-toc-text">路由中使用</span></a></li></ol></li></ol></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         <!-- Custom Thumbnail -->
-        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50 lazy" data-original="https://raw.githubusercontent.com/myxy99/pic/master/img/20200707204230.png">
+        <div class="post_thumbnail-custom mdl-card__media mdl-color-text--grey-50" style="background-image:url(https://raw.githubusercontent.com/myxy99/pic/master/img/20200707204230.png)">
+    
+            <p class="article-headline-p">
+                Golang使用jwt
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/user.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yangzzz</strong>
+        <span>7月 07, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZUlEQVR42u3aQXLDIAwF0Nz/0u0B0jhfEhA387zKuB7KYwHMlx4/X/088PDw8PDw8PDwbsZ7xM8fAz399fnLV9+8enP9PpkbHh4e3hnem602mHQy0VdjXi9feW54eHh4B3nJ5K5/J+DrSSfjv1k4PDw8vFvykjfJpn+Nx8PDw/s+Xn5p7l2R8fDw8O7Pq/7LPGxNIuD8UNmYteDh4eHFvHyK538fre/h4eHhBbxyS9OiTf/6y2VNV3h4eHgbePlGnFy18zC3ii+U0PDw8PA+yss38fx90pyavCm3q+Lh4eFt4/Wo1W+ql+k83sXDw8M7w0s25d5VOIkzVjVp4eHh4Z3k9Q6GclF/cFTkBwkeHh7ebl51itULdy8Czt+PWgfw8PDwWrw8Ku0VxnrHzGjh8PDw8Dbz8qi0F8JOjo0FrQN4eHh4G3jJZp1ErnkxbEdIgYeHh3eeVw1M82C3ULiK2c0CGB4eHt4GXn4AVKOKfLEWjIaHh4f3IV4eSeTX6Gp40aPi4eHhneGtClVXXbWrgQUeHh7eed6kJFa9iPfGLxxdeHh4eAd51eanUdgaHxjX35TDCDw8PLxtvOpGP2nJyvELYlw8PDy8bbxJuSsfuVdge7M0eHh4eJt51WceN1Snm7c44OHh4Z3hTTb9ScmqGtGOmq7w8PDwNvDmjVB560B1KfMGLDw8PLzzvFVNAHloO8Hj4eHh/S/eqvJ/r9Vg1HSFh4eH9yHeqnJXfjwsax3Aw8PDW8qrNjnlm34y9WrxDA8PD++zvGoEML9AJ1FFc3Hx8PDwNvO+78HDw8PDw8PDw7vB8wuhpD7azegj4QAAAABJRU5ErkJggg==">
+    
+</ul>
+
     
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/posts/golang/631d0e90.html">Golang使用jwt</a></p>
-    </div>
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/golang/" rel="tag">golang</a>
+    </ul>
+    
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/posts/golang/631d0e90.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/golang/">golang</a>
-              </span>
-            
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
 
-            
+    
 
-            
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Golang使用jwt&url=https://myxy99.cn/posts/golang/631d0e90.html&pic=https://myxy99.cn/img/user.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
 
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://myxy99.cn/posts/golang/631d0e90.html&title=Golang使用jwt" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Yangzzz&#39;s Blog&title=Golang使用jwt&summary=Yangzzz&#34;s Blog&pics=https://myxy99.cn/img/user.png&url=https://myxy99.cn/posts/golang/631d0e90.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+    
 </div>
 
-            
-            
-        
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+        <h1 id="Golang中使用JWT-json-web-token"><a href="#Golang中使用JWT-json-web-token" class="headerlink" title="Golang中使用JWT(json web token)"></a>Golang中使用JWT(json web token)</h1><h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>什么是jwt这里就不多说了，官网有介绍。官网介绍：<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">https://jwt.io/introduction/</a></p>
+<h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="下载依赖包"><a href="#下载依赖包" class="headerlink" title="下载依赖包"></a>下载依赖包</h3><pre><code class="golang">go get -u github.com/dgrijalva/jwt-go
+</code></pre>
+<h3 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h3><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre><code class="ini">[jwt]
+# 盐
+JwtSecret = jdnsakjbduiiudu
+# 过期时间（天
+ExpiresAt = 3
+# 签发
+Issuer = jwt
+</code></pre>
+<h4 id="golang代码"><a href="#golang代码" class="headerlink" title="golang代码"></a>golang代码</h4><pre><code class="golang">package Utils
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/posts/golang/4db013d1.html">Golang邮件发送</a></p>
-    </div>
+import (
+    &quot;errors&quot;
+    &quot;github.com/dgrijalva/jwt-go&quot;
+    &quot;time&quot;
+    &quot;wPan/v1/Config&quot; //加载配置
+    &quot;wPan/v1/Models&quot; //加载模型
+)
 
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/posts/golang/4db013d1.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/golang/">golang</a>
-              </span>
-            
+// JWT 签名结构
+type JWT struct {
+    SigningKey []byte
+}
 
-            
+//JWT 中存储得数据结构体 这里可以根据需求自由添加
+type UserInfo struct {
+    Id       int    `json:&quot;id&quot;`
+    Username string `json:&quot;username&quot;`
+    Email    string `json:&quot;email&quot;`
+    Status   int    `json:&quot;status&quot;`
+}
 
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/posts/jenkins/87b776c7.html">Jenkins插件安装提速</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            操作步骤
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/posts/jenkins/87b776c7.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/jenkins/">jenkins</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/posts/golang/41aae1e1.html">Golang实现雪花算法</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            雪花算法
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/posts/golang/41aae1e1.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/golang/">golang</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
-    $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
+// 生成JWT函数
+func GenerateToken(user *Models.User) (string, error) {
+    claim := jwt.MapClaims{
+    //这里为自定义
+        &quot;username&quot;: user.UserName,
+        &quot;id&quot;:       user.ID,
+        &quot;email&quot;:    user.Email,
+    &quot;status&quot;:   user.Status,
+    //到这里，后面都是必须的
+        &quot;nbf&quot;:      time.Now().Unix(),
+    &quot;iat&quot;:      time.Now().Unix(),
+    //设置过期时间
+    &quot;exp&quot;:      time.Now().Unix() + Config.JWTSetting.ExpiresAt*60*60,
+    //签名方
+        &quot;iss&quot;:      Config.JWTSetting.Issuer,
     }
-</script>
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
+    tokens, err := token.SignedString([]byte(Config.JWTSetting.JwtSecret))
+    return tokens, err
+}
+
+//设置盐
+func secret() jwt.Keyfunc {
+    return func(token *jwt.Token) (interface{}, error) {
+        return []byte(Config.JWTSetting.JwtSecret), nil
+    }
+}
+
+//token 验证
+func ParseToken(tokens string) (user *UserInfo, err error) {
+    user = &amp;UserInfo{}
+    token, err := jwt.Parse(tokens, secret())
+    if err != nil {
+        return
+    }
+    claim, ok := token.Claims.(jwt.MapClaims)
+    if !ok {
+        err = errors.New(&quot;cannot convert claim to mapclaim&quot;)
+        return
+    }
+    //验证token，如果token被修改过则为false
+    if !token.Valid {
+        err = errors.New(&quot;token is invalid&quot;)
+        return
+  }
+  //提取当初我们生成时候存储的数据
+    user.Id = int(claim[&quot;id&quot;].(float64))
+    user.Username = claim[&quot;username&quot;].(string)
+  user.Email = claim[&quot;email&quot;].(string)
+  user.Status = int(claim[&quot;status&quot;].(float64))
+
+    return
+}
+</code></pre>
+<p>Service中的使用</p>
+<pre><code class="golang">func GetJwt(u *Models.User) (string, bool) {
+    token, err := Utils.GenerateToken(u)
+    if err != nil {
+        return &quot;&quot;, false
+    }
+    return token, true
+}
+</code></pre>
+<h4 id="编写验证中间件"><a href="#编写验证中间件" class="headerlink" title="编写验证中间件"></a>编写验证中间件</h4><p>我这里使用的gin框架，其他的框架也类似</p>
+<pre><code class="golang">func Auth() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        token := c.GetHeader(&quot;Authorization&quot;)
+        userInfo, err := Utils.ParseToken(token[7:])
+        if err != nil {
+            R.Response(c, http.StatusUnauthorized, R.AUTH_ERROR, nil, http.StatusUnauthorized)
+            c.Abort()
+            return
+        }
+        c.Set(&quot;userInfo&quot;, userInfo)
+        c.Next()
+        return
+    }
+}
+</code></pre>
+<h4 id="路由中使用"><a href="#路由中使用" class="headerlink" title="路由中使用"></a>路由中使用</h4><pre><code class="golang">authApi.GET(&quot;/info&quot;, Middleware.Auth(), Controllers.Info)
+</code></pre>
+<p>这样用户再访问需要验证的请求时，就需要请求头中带上<code>Authorization</code>，value为token。</p>
+<p>参考连接：<a href="https://github.com/dgrijalva/jwt-go" target="_blank" rel="noopener">https://github.com/dgrijalva/jwt-go</a></p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            本文使用<a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank">CC BY-NC-SA 3.0 中国大陆</a>协议许可
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://myxy99.cn/posts/golang/631d0e90.html">https://myxy99.cn/posts/golang/631d0e90.html</a>
+                    </p>
+                </blockquote>
+        
+    
 
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 Gitalk -->
+<div id="gitalk-comment">
+    <!-- Gitalk 评论框 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js"></script>
+
+<script>
+    var gitalk = new Gitalk({
+            clientID: '00a0ec5bdacc1f01cf84',
+            clientSecret: 'c1b12ec34e646e714eccef2bdaff831d21e64b59',
+            repo: 'myxy99.github.io',
+            owner: 'myxy99',
+            admin: ['myxy99'],
+            id: md5(location.pathname),
+            // facebook-like distraction free mode
+            distractionFreeMode: false
+        })
+   gitalk.render('gitalk-container')
+</script>
+</div>
+<style>
+    #gitalk-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/posts/golang/4db013d1.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     

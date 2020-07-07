@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Golang使用jwt</title>
+      <link href="/posts/golang/631d0e90.html"/>
+      <url>/posts/golang/631d0e90.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang中使用JWT-json-web-token"><a href="#Golang中使用JWT-json-web-token" class="headerlink" title="Golang中使用JWT(json web token)"></a>Golang中使用JWT(json web token)</h1><h2 id="什么是jwt"><a href="#什么是jwt" class="headerlink" title="什么是jwt"></a>什么是jwt</h2><p>什么是jwt这里就不多说了，官网有介绍。官网介绍：<a href="https://jwt.io/introduction/" target="_blank" rel="noopener">https://jwt.io/introduction/</a></p><h2 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h2><h3 id="下载依赖包"><a href="#下载依赖包" class="headerlink" title="下载依赖包"></a>下载依赖包</h3><pre><code class="golang">go get -u github.com/dgrijalva/jwt-go</code></pre><h3 id="编写代码"><a href="#编写代码" class="headerlink" title="编写代码"></a>编写代码</h3><h4 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h4><pre><code class="ini">[jwt]# 盐JwtSecret = jdnsakjbduiiudu# 过期时间（天ExpiresAt = 3# 签发Issuer = jwt</code></pre><h4 id="golang代码"><a href="#golang代码" class="headerlink" title="golang代码"></a>golang代码</h4><pre><code class="golang">package Utilsimport (    &quot;errors&quot;    &quot;github.com/dgrijalva/jwt-go&quot;    &quot;time&quot;    &quot;wPan/v1/Config&quot; //加载配置    &quot;wPan/v1/Models&quot; //加载模型)// JWT 签名结构type JWT struct {    SigningKey []byte}//JWT 中存储得数据结构体 这里可以根据需求自由添加type UserInfo struct {    Id       int    `json:&quot;id&quot;`    Username string `json:&quot;username&quot;`    Email    string `json:&quot;email&quot;`    Status   int    `json:&quot;status&quot;`}// 生成JWT函数func GenerateToken(user *Models.User) (string, error) {    claim := jwt.MapClaims{    //这里为自定义        &quot;username&quot;: user.UserName,        &quot;id&quot;:       user.ID,        &quot;email&quot;:    user.Email,    &quot;status&quot;:   user.Status,    //到这里，后面都是必须的        &quot;nbf&quot;:      time.Now().Unix(),    &quot;iat&quot;:      time.Now().Unix(),    //设置过期时间    &quot;exp&quot;:      time.Now().Unix() + Config.JWTSetting.ExpiresAt*60*60,    //签名方        &quot;iss&quot;:      Config.JWTSetting.Issuer,    }    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)    tokens, err := token.SignedString([]byte(Config.JWTSetting.JwtSecret))    return tokens, err}//设置盐func secret() jwt.Keyfunc {    return func(token *jwt.Token) (interface{}, error) {        return []byte(Config.JWTSetting.JwtSecret), nil    }}//token 验证func ParseToken(tokens string) (user *UserInfo, err error) {    user = &amp;UserInfo{}    token, err := jwt.Parse(tokens, secret())    if err != nil {        return    }    claim, ok := token.Claims.(jwt.MapClaims)    if !ok {        err = errors.New(&quot;cannot convert claim to mapclaim&quot;)        return    }    //验证token，如果token被修改过则为false    if !token.Valid {        err = errors.New(&quot;token is invalid&quot;)        return  }  //提取当初我们生成时候存储的数据    user.Id = int(claim[&quot;id&quot;].(float64))    user.Username = claim[&quot;username&quot;].(string)  user.Email = claim[&quot;email&quot;].(string)  user.Status = int(claim[&quot;status&quot;].(float64))    return}</code></pre><p>Service中的使用</p><pre><code class="golang">func GetJwt(u *Models.User) (string, bool) {    token, err := Utils.GenerateToken(u)    if err != nil {        return &quot;&quot;, false    }    return token, true}</code></pre><h4 id="编写验证中间件"><a href="#编写验证中间件" class="headerlink" title="编写验证中间件"></a>编写验证中间件</h4><p>我这里使用的gin框架，其他的框架也类似</p><pre><code class="golang">func Auth() gin.HandlerFunc {    return func(c *gin.Context) {        token := c.GetHeader(&quot;Authorization&quot;)        userInfo, err := Utils.ParseToken(token[7:])        if err != nil {            R.Response(c, http.StatusUnauthorized, R.AUTH_ERROR, nil, http.StatusUnauthorized)            c.Abort()            return        }        c.Set(&quot;userInfo&quot;, userInfo)        c.Next()        return    }}</code></pre><h4 id="路由中使用"><a href="#路由中使用" class="headerlink" title="路由中使用"></a>路由中使用</h4><pre><code class="golang">authApi.GET(&quot;/info&quot;, Middleware.Auth(), Controllers.Info)</code></pre><p>这样用户再访问需要验证的请求时，就需要请求头中带上<code>Authorization</code>，value为token。</p><p>参考连接：<a href="https://github.com/dgrijalva/jwt-go" target="_blank" rel="noopener">https://github.com/dgrijalva/jwt-go</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang邮件发送</title>
       <link href="/posts/golang/4db013d1.html"/>
       <url>/posts/golang/4db013d1.html</url>
