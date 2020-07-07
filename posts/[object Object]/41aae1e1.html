@@ -46,7 +46,7 @@
     
     <title>
         
-            Jenkins插件安装提速 | 
+            Golang实现雪花算法 | 
         
         Yangzzz&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Yangzzz&#34;s Blog">
-    <meta name="keywords" content="golang,php,python,程序员,jenkins">
+    <meta name="keywords" content="golang,php,python,程序员,golang">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Yangzzz&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://myxy99.cn/posts/87b776c7.html">
+    <meta name="msapplication-starturl" content="https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Yangzzz&#39;s Blog">
@@ -233,16 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://myxy99.cn/posts/87b776c7.html">
+    <meta property="og:url" content="https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Jenkins插件安装提速 | Yangzzz&#39;s Blog">
+    <meta property="og:title" content="Golang实现雪花算法 | Yangzzz&#39;s Blog">
     <meta property="og:image" content="/img/user.png">
     <meta property="og:description" content="Yangzzz&#34;s Blog">
-    <meta property="og:article:tag" content="jenkins"> 
+    <meta property="og:article:tag" content="golang"> 
 
     
-        <meta property="article:published_time" content="Tue Jul 07 2020 14:46:27 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 07 2020 18:43:21 GMT+0800">
+        <meta property="article:published_time" content="Tue Jul 07 2020 13:09:56 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 18:43:14 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -250,7 +250,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://myxy99.cn/posts/87b776c7.html" />
+        <link rel="canonical" href="https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html" />
     
 
     <!-- Structured-data for SEO -->
@@ -262,10 +262,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "https://myxy99.cn/posts/87b776c7.html",
-    "headline": "Jenkins插件安装提速",
-    "datePublished": "Tue Jul 07 2020 14:46:27 GMT+0800",
-    "dateModified": "Tue Jul 07 2020 18:43:21 GMT+0800",
+    "mainEntityOfPage": "https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html",
+    "headline": "Golang实现雪花算法",
+    "datePublished": "Tue Jul 07 2020 13:09:56 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 18:43:14 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yangzzz",
@@ -283,7 +283,7 @@
             "url": "/img/user.png"
         }
     },
-    "keywords": ",jenkinsgolang,php,python,程序员",
+    "keywords": ",golanggolang,php,python,程序员",
     "description": "Yangzzz&#34;s Blog",
 }
 </script>
@@ -349,7 +349,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#操作步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一种方式：使用vim"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">第一种方式：使用vim</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二种方式：使用sed"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第二种方式：使用sed</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#雪花算法"><span class="post-toc-number">1.</span> <span class="post-toc-text">雪花算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#雪花算法-1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">雪花算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法描述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Golang-实现"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Golang 实现</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -381,7 +381,7 @@
         
     
             <p class="article-headline-p">
-                Jenkins插件安装提速
+                Golang实现雪花算法
             </p>
         </div>
 
@@ -422,7 +422,7 @@
 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
     <li class="mdl-menu__item">在其它设备中阅读本文章</li>
     
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAAB9ElEQVR42u3aW47CMAwFUPa/aWYBiPTaoWKCT78QatOcfljx4/H8ieuBgYGBgYGBgfFvGI/4enf/62rJP+s113vAwMCYybgIbS+vXP9O1k+evfgcGBgYIxnrIFuFvdvKev3CHjAwMDCC1+SBO1kTAwMD446A20w+g/CNgYGBsZPErsNusq1ki7fn4hgYGAcyqo2BO35/ob+BgYFxCKM84hCE2mrA/cLMCAYGxlGMdSktGblIkMlb8vsxMDCmMfKCVzX1TT7NztAGBgbGNMZ+IpqX/vOPcvEpMTAwxjCqx7u8tZlv8QMBFwMDYwwjAfSKZb02w0WYxsDAGMPYaQ/stwTyNsOHW5gYGBgHMvLA1xvI6AVrDAwMjF7JrDqK+oGhil65DQMD4+cYedBMwvQOqVCAw8DAGMPIN5oH4jxBTQp/GBgYGNWt5y/bSXSTAI2BgTGH0WtVVg95+YgGBgYGRt4YqBb0ewfB5MLAwMDolen3m5T5gMUtMyMYGBhHMaqBL3l9tYiWjHeU+xsYGBg/x8iD485hMU+PowYqBgbGSMZOgSwfe82PgM3+BgYGxnhG757qMEd0JwYGBkacZCbP5kE8GfLAwMCYzOgV8av/VFPcW8ptGBgYBzJ6jYH8nmoCHH0IDAyMMYxzLwwMDAwMDAyMr15/lm9UuUH5GZYAAAAASUVORK5CYII=">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYUlEQVR42u3aQW7DMAwEwPz/0+0DUihL0maNYHwqDMfW6CCqK75+vvp64eHh4eHh4eHhPYz3iq/zr97vvz//x1COTzbHhoeHh7fC+7DUXgrofTd/Bg8PD2+Td17uz4t1r2wk38rHhoeHh/dk3ryQJE/i4eHhfQcvKQ/V+71gAg8PD+8JvHkoUC0hj8ta8PDw8GJefsi0//fq+R4eHh5ewJss1ueIIS8VF5cTPDw8vJt5k1j2HFL0gt3kPR+iYTw8PLybeXk4myzi1U1zYdDB2PDw8PB2ePMgII8JkqV/spXHw8PD2+HlUUK+2c2jinl0W45x8fDw8C7i5aRkKNe2BeTThIeHh7fPS5bv5JO9sKPQHFBtHcDDw8O7lHeOYvMtb8LIWwd6JQEPDw9vk5f/298b7n0TGhUGPDw8vHVevr2u3q/younDw8PDW+H1ItQ8tsg34nlE0gwj8PDw8Ma8PNLNl/558ahOHB4eHt4mbxLRJsPNi1BeqJopNR4eHt5FvLxBqroVznlnZD59eHh4eDu83mHVeaC9Zb0XYeDh4eE9h5e/NN8QV4tEtWkADw8Pb5/XG2KvMSt5TxWMh4eHt8lLXldtL8iHXt1Yf5h0PDw8vJt5k0h3cjBWjTnOW388PDy8Td4kPK02qua/rZLw8PDw9nlJMZgccc036IXWLjw8PLxFXrXxdHL0lR+8XXy+h4eHh/evvN6iX21WqJYZPDw8vCfz8vigGtTm38LDw8P7X141jEg+1gs4erEyHh4e3iavGgH0DsZ6rQnlQoKHh4d3M+/7Ljw8PDw8PDw8vAdcv4SogaXMxFxEAAAAAElFTkSuQmCC">
     
 </ul>
 
@@ -436,7 +436,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/jenkins/" rel="tag">jenkins</a>
+        <a class="post_tag-link" href="/tags/golang/" rel="tag">golang</a>
     </ul>
     
 
@@ -453,7 +453,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Jenkins插件安装提速&url=https://myxy99.cn/posts/87b776c7.html&pic=https://myxy99.cn/img/user.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Golang实现雪花算法&url=https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html&pic=https://myxy99.cn/img/user.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -471,7 +471,7 @@
 
     <!-- Share LinkedIn -->
     
-        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://myxy99.cn/posts/87b776c7.html&title=Jenkins插件安装提速" target="_blank">
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html&title=Golang实现雪花算法" target="_blank">
             <li class="mdl-menu__item">
                 分享到 LinkedIn
             </li>
@@ -480,7 +480,7 @@
 
     <!-- Share QQ -->
     
-        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Yangzzz&#39;s Blog&title=Jenkins插件安装提速&summary=Yangzzz&#34;s Blog&pics=https://myxy99.cn/img/user.png&url=https://myxy99.cn/posts/87b776c7.html" target="_blank">
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Yangzzz&#39;s Blog&title=Golang实现雪花算法&summary=Yangzzz&#34;s Blog&pics=https://myxy99.cn/img/user.png&url=https://myxy99.cn/posts/%5Bobject%20Object%5D/41aae1e1.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 QQ
             </li>
@@ -499,18 +499,79 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>配置Json其实在Jenkins的工作目录中</p>
-<pre><code class="cmd">cd {你的Jenkins工作目录}/updates  #进入更新配置位置</code></pre>
-<h2 id="第一种方式：使用vim"><a href="#第一种方式：使用vim" class="headerlink" title="第一种方式：使用vim"></a>第一种方式：使用vim</h2><pre><code class="cmd">vim default.json   #这个Json文件与上边的配置文件是相同的</code></pre>
-<p>使用vim的命令，如下，替换所有插件下载的url</p>
-<pre><code class="cmd">:1,$s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g</code></pre>
-<p>替换连接测试url</p>
-<pre><code class="cmd">:1,$s/http:\/\/www.google.com/https:\/\/www.baidu.com/g</code></pre>
-<pre><code>进入vim先输入：然后再粘贴上边的：后边的命令，注意不要写两个冒号！</code></pre><p>修改完成保存退出 </p>
-<pre><code class="cmd">:wq</code></pre>
-<h2 id="第二种方式：使用sed"><a href="#第二种方式：使用sed" class="headerlink" title="第二种方式：使用sed"></a>第二种方式：使用sed</h2><p>在updates目录下</p>
-<pre><code class="cmd">sed -i &#39;s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g&#39; default.json &amp;&amp; sed -i &#39;s/http:\/\/www.google.com/https:\/\/www.baidu.com/g&#39; default.json</code></pre>
-<pre><code>这是直接修改的配置文件，如果前边Jenkins用sudo启动的话，那么这里的两个sed前均需要加上sudo</code></pre><p>重启Jenkins，简直超速！！</p>
+        <h1 id="雪花算法"><a href="#雪花算法" class="headerlink" title="雪花算法"></a>雪花算法</h1><h2 id="雪花算法-1"><a href="#雪花算法-1" class="headerlink" title="雪花算法"></a>雪花算法</h2><p>雪花算法的原始版本是scala版，用于生成分布式ID（纯数字，时间顺序）,订单编号等<br>    自增ID：对于数据敏感场景不宜使用，且不适合于分布式场景。 GUID：采用无意义字符串，数据量增大时造成访问过慢，且不宜排序。</p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><ul>
+<li>最高位是符号位，始终为0，不可用。</li>
+<li>41位的时间序列，精确到毫秒级，41位的长度可以使用69年。时间位还有一个很重要的作用是可以根据时间进行排序。</li>
+<li>10位的机器标识，10位的长度最多支持部署1024个节点。</li>
+<li>12位的计数序列号，序列号即一系列的自增id，可以支持同一节点同一毫秒生成多个ID序号，12位的计数序列号支持每个节点每毫秒产生4096个ID序号。</li>
+</ul>
+<h2 id="Golang-实现"><a href="#Golang-实现" class="headerlink" title="Golang 实现"></a>Golang 实现</h2><pre><code class="golang">package main
+
+import (
+    &quot;errors&quot;
+    &quot;fmt&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+const (
+    workerBits  uint8 = 10
+    numberBits  uint8 = 12
+    workerMax   int64 = -1 ^ (-1 &lt;&lt; workerBits)
+    numberMax   int64 = -1 ^ (-1 &lt;&lt; numberBits)
+    timeShift   uint8 = workerBits + numberBits
+    workerShift uint8 = numberBits
+    startTime   int64 = 1525705533000 // 如果在程序跑了一段时间修改了epoch这个值 可能会导致生成相同的ID
+)
+
+type Worker struct {
+    mu        sync.Mutex
+    timestamp int64
+    workerId  int64
+    number    int64
+}
+
+func NewWorker(workerId int64) (*Worker, error) {
+    if workerId &lt; 0 || workerId &gt; workerMax {
+        return nil, errors.New(&quot;Worker ID excess of quantity&quot;)
+    }
+    // 生成一个新节点
+    return &amp;Worker{
+        timestamp: 0,
+        workerId:  workerId,
+        number:    0,
+    }, nil
+}
+
+func (w *Worker) GetId() int64 {
+    w.mu.Lock()
+    defer w.mu.Unlock()
+    now := time.Now().UnixNano() / 1e6
+    if w.timestamp == now {
+        w.number++
+        if w.number &gt; numberMax {
+            for now &lt;= w.timestamp {
+                now = time.Now().UnixNano() / 1e6
+            }
+        }
+    } else {
+        w.number = 0
+        w.timestamp = now
+    }
+    ID := int64((now-startTime)&lt;&lt;timeShift | (w.workerId &lt;&lt; workerShift) | (w.number))
+    return ID
+}
+func main() {
+    // 生成节点实例
+    node, err := NewWorker(1)
+    if err != nil {
+        panic(err)
+    }
+    for {
+        fmt.Println(node.GetId())
+    }
+}</code></pre>
 
         
                 <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
@@ -519,7 +580,7 @@
                             This blog is under a <a href="#" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
                         </strong>
                         <br>
-                        <strong>本文链接：</strong><a href="https://myxy99.cn/posts/87b776c7.html">https://myxy99.cn/posts/87b776c7.html</a>
+                        <strong>本文链接：</strong><a href="https://myxy99.cn/posts/[object%20Object]/41aae1e1.html">https://myxy99.cn/posts/[object%20Object]/41aae1e1.html</a>
                     </p>
                 </blockquote>
         
@@ -572,19 +633,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
+        <a href="/posts/%5Bobject%20Object%5D/87b776c7.html" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
-    
-        <a href="/posts/41aae1e1.html" id="post_nav-older" class="next-content">
-            旧篇
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_forward</i>
-            </button>
-        </a>
     
 </nav>
 
