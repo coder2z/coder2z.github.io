@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Tue Jul 07 2020 13:09:56 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 07 2020 13:16:45 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 13:25:54 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "https://myxy99.github.io/2020/07/07/golang%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/index.html",
     "headline": "Golang实现雪花算法",
     "datePublished": "Tue Jul 07 2020 13:09:56 GMT+0800",
-    "dateModified": "Tue Jul 07 2020 13:16:45 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 13:25:54 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yangzzz",
@@ -349,7 +349,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#雪花算法"><span class="post-toc-number">1.</span> <span class="post-toc-text">雪花算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#雪花算法-1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">雪花算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法描述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法描述</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#雪花算法"><span class="post-toc-number">1.</span> <span class="post-toc-text">雪花算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#雪花算法-1"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">雪花算法</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#算法描述"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">算法描述</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Golang-实现"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Golang 实现</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -506,7 +506,7 @@
 <li>10位的机器标识，10位的长度最多支持部署1024个节点。</li>
 <li>12位的计数序列号，序列号即一系列的自增id，可以支持同一节点同一毫秒生成多个ID序号，12位的计数序列号支持每个节点每毫秒产生4096个ID序号。</li>
 </ul>
-<pre><code class="golang">package main
+<h2 id="Golang-实现"><a href="#Golang-实现" class="headerlink" title="Golang 实现"></a>Golang 实现</h2><pre><code class="golang">package main
 
 import (
     &quot;errors&quot;
