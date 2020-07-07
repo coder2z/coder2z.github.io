@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Tue Jul 07 2020 14:46:27 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 07 2020 14:52:55 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 17:40:07 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html",
     "headline": "Jenkins插件安装提速",
     "datePublished": "Tue Jul 07 2020 14:46:27 GMT+0800",
-    "dateModified": "Tue Jul 07 2020 14:52:55 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 17:40:07 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yangzzz",
@@ -349,7 +349,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#操作步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一种方式：使用vim"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">第一种方式：使用vim</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二种方式：使用sed"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">第二种方式：使用sed</span></a></li></ol></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#操作步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第一种方式：使用vim"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">第一种方式：使用vim</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二种方式：使用sed"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第二种方式：使用sed</span></a></li></ol></li></ol>
     </ul>
     
 
@@ -501,14 +501,14 @@
     
         <h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>配置Json其实在Jenkins的工作目录中</p>
 <pre><code class="cmd">cd {你的Jenkins工作目录}/updates  #进入更新配置位置</code></pre>
-<h3 id="第一种方式：使用vim"><a href="#第一种方式：使用vim" class="headerlink" title="第一种方式：使用vim"></a>第一种方式：使用vim</h3><pre><code class="cmd">vim default.json   #这个Json文件与上边的配置文件是相同的</code></pre>
+<h2 id="第一种方式：使用vim"><a href="#第一种方式：使用vim" class="headerlink" title="第一种方式：使用vim"></a>第一种方式：使用vim</h2><pre><code class="cmd">vim default.json   #这个Json文件与上边的配置文件是相同的</code></pre>
 <p>使用vim的命令，如下，替换所有插件下载的url</p>
 <pre><code class="cmd">:1,$s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g</code></pre>
 <p>替换连接测试url</p>
 <pre><code class="cmd">:1,$s/http:\/\/www.google.com/https:\/\/www.baidu.com/g</code></pre>
 <pre><code>进入vim先输入：然后再粘贴上边的：后边的命令，注意不要写两个冒号！</code></pre><p>修改完成保存退出 </p>
 <pre><code class="cmd">:wq</code></pre>
-<h3 id="第二种方式：使用sed"><a href="#第二种方式：使用sed" class="headerlink" title="第二种方式：使用sed"></a>第二种方式：使用sed</h3><p>在updates目录下</p>
+<h2 id="第二种方式：使用sed"><a href="#第二种方式：使用sed" class="headerlink" title="第二种方式：使用sed"></a>第二种方式：使用sed</h2><p>在updates目录下</p>
 <pre><code class="cmd">sed -i &#39;s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g&#39; default.json &amp;&amp; sed -i &#39;s/http:\/\/www.google.com/https:\/\/www.baidu.com/g&#39; default.json</code></pre>
 <pre><code>这是直接修改的配置文件，如果前边Jenkins用sudo启动的话，那么这里的两个sed前均需要加上sudo</code></pre><p>重启Jenkins，简直超速！！</p>
 
