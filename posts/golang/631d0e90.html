@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Tue Jul 07 2020 20:35:19 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jul 07 2020 21:05:53 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 21:08:13 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "https://myxy99.cn/posts/golang/631d0e90.html",
     "headline": "Golang使用jwt",
     "datePublished": "Tue Jul 07 2020 20:35:19 GMT+0800",
-    "dateModified": "Tue Jul 07 2020 21:05:53 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 21:08:13 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Yangzzz",
@@ -527,18 +527,18 @@ type UserInfo struct {
 // 生成JWT函数
 func GenerateToken(user *Models.User) (string, error) {
     claim := jwt.MapClaims{
-    //这里为自定义
+        //这里为自定义
         &quot;username&quot;: user.UserName,
         &quot;id&quot;:       user.ID,
         &quot;email&quot;:    user.Email,
-    &quot;status&quot;:   user.Status,
-    //到这里，后面都是必须的
-        &quot;nbf&quot;:      time.Now().Unix(),
-    &quot;iat&quot;:      time.Now().Unix(),
-    //设置过期时间
-    &quot;exp&quot;:      time.Now().Unix() + Config.JWTSetting.ExpiresAt*60*60,
-    //签名方
-        &quot;iss&quot;:      Config.JWTSetting.Issuer,
+        &quot;status&quot;:   user.Status,
+        //到这里，后面都是必须的
+        &quot;nbf&quot;: time.Now().Unix(),
+        &quot;iat&quot;: time.Now().Unix(),
+        //设置过期时间
+        &quot;exp&quot;: time.Now().Unix() + Config.JWTSetting.ExpiresAt*60*60,
+        //签名方
+        &quot;iss&quot;: Config.JWTSetting.Issuer,
     }
     token := jwt.NewWithClaims(jwt.SigningMethodHS256, claim)
     tokens, err := token.SignedString([]byte(Config.JWTSetting.JwtSecret))
@@ -568,15 +568,16 @@ func ParseToken(tokens string) (user *UserInfo, err error) {
     if !token.Valid {
         err = errors.New(&quot;token is invalid&quot;)
         return
-  }
-  //提取当初我们生成时候存储的数据
+    }
+    //提取当初我们生成时候存储的数据
     user.Id = int(claim[&quot;id&quot;].(float64))
     user.Username = claim[&quot;username&quot;].(string)
-  user.Email = claim[&quot;email&quot;].(string)
-  user.Status = int(claim[&quot;status&quot;].(float64))
+    user.Email = claim[&quot;email&quot;].(string)
+    user.Status = int(claim[&quot;status&quot;].(float64))
 
     return
 }
+
 </code></pre>
 <p>Service中的使用</p>
 <pre><code class="golang">func GetJwt(u *Models.User) (string, bool) {
