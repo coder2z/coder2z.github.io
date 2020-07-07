@@ -27,6 +27,8 @@
 
 
 
+    <link rel="dns-prefetch" href="https://imsun.github.io"/>
+
 
 
 
@@ -595,6 +597,33 @@ func main() {
                 <!-- Post Comments -->
                 
                     
+    <!-- 使用 gitcoment -->
+<div id="gitment-comment">
+    <!-- Gitment 评论框 -->
+<div id="container"></div>
+</div>
+<style>
+    #gitment-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'https://myxy99.github.io/2020/07/07/golang%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/', // 可选。默认为 location.href
+        owner: 'myxy99',
+        repo: 'pic',
+        oauth: {
+            client_id: '00a0ec5bdacc1f01cf84',
+            client_secret: 'c1b12ec34e646e714eccef2bdaff831d21e64b59',
+        },
+    })
+    gitment.render('container')
+</script>
+
+
                 
             </div>
 
@@ -984,6 +1013,8 @@ It will not impact the appearance and can give developers a lot of support :)
 
 
 
+
+   <!-- Gitment -->
 
 
 
