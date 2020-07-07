@@ -46,7 +46,7 @@
     
     <title>
         
-            归档: 2020 | 
+            Jenkins插件安装提速 | 
         
         Yangzzz&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Yangzzz&#34;s Blog">
-    <meta name="keywords" content="golang,php,python,程序员">
+    <meta name="keywords" content="golang,php,python,程序员,jenkins">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Yangzzz&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://myxy99.github.io/archives/2020/">
+    <meta name="msapplication-starturl" content="https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Yangzzz&#39;s Blog">
@@ -233,13 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://myxy99.github.io/archives/2020/">
+    <meta property="og:url" content="https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2020 | Yangzzz&#39;s Blog">
+    <meta property="og:title" content="Jenkins插件安装提速 | Yangzzz&#39;s Blog">
     <meta property="og:image" content="/img/user.png">
     <meta property="og:description" content="Yangzzz&#34;s Blog">
-    
+    <meta property="og:article:tag" content="jenkins"> 
 
+    
+        <meta property="article:published_time" content="Tue Jul 07 2020 14:46:27 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 14:52:55 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,13 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://myxy99.github.io/archives/2020/index.html" />
+        <link rel="canonical" href="https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html",
+    "headline": "Jenkins插件安装提速",
+    "datePublished": "Tue Jul 07 2020 14:46:27 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 14:52:55 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yangzzz",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/user.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Yangzzz&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/user.png"
+        }
+    },
+    "keywords": ",jenkinsgolang,php,python,程序员",
+    "description": "Yangzzz&#34;s Blog",
+}
+</script>
 
 
     
@@ -287,159 +320,246 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#操作步骤"><span class="post-toc-number">1.</span> <span class="post-toc-text">操作步骤</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第一种方式：使用vim"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">第一种方式：使用vim</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第二种方式：使用sed"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">第二种方式：使用sed</span></a></li></ol></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/">Jenkins插件安装提速</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            操作步骤
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/jenkins/">jenkins</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
-    
-        
-            <!-- Random Thumbnail -->
-            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
-
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2020/07/07/golang%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/">Golang实现雪花算法</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            雪花算法
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2020/07/07/golang%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Jenkins插件安装提速
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/user.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yangzzz</strong>
+        <span>7月 07, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASYAAAEmCAAAAADqr2IGAAAEKUlEQVR42u3bS3IjIRAFQN3/0jMHmHH7vaqWQ42TlcNhIUgW1Ae//hjBeCHAhAkTJkyYDEyYMGH6eKZXPP4z0eXv//3s9WzFBr6Y+au1zfaICRMmTJhOYkqWlXMkC73eXg7akuV7xIQJEyZM5zElm7lGSUKB65kTjuv13HZgmDBhwoTpFzO1ZHkKmn9jEqZgwoQJEyZMe6a8LJsXl+9NxTFhwoQJE6Z8WbPya154zRuobdr8o7VwTJgwYcL0YUx3JaWf/POPvm/ChAkTJkwfw9SOTStxExDk6WsesnyzU0yYMGHCdARTfnHmpdt3XM9tWXlfUMaECRMmTCcxJVf7O1qGs5VEm4zXP6wQYMKECROmhzDlrcd9ktlub/agZ1OqxoQJEyZM5zEll3q7rFkJeDZDUhoeBiiYMGHChOlopk1zMYfLjydKVoNP5akyJkyYMGE6iWnW8GvT2rYgu2myJun6qhaOCRMmTJgexZRvY9akzAOOtqk5O6TV+yZMmDBhwvRAps1FPiu85r9py9B52xITJkyYMP1OpvaSbtuZ+bZnh5dAREeFCRMmTJiOYNpc0nlaO2ua5gXczWxRQIAJEyZMmI5gmo1hYhknt2363T4/+pIbEyZMmDAdwTRb1l0Lah/WtA9VZ09mMWHChAnTqUx5iJAvYoaSt0vzJDlvr2LChAkTppOY2uAgJ5uVdGdp9r3zY8KECROmU5ny5zV547At5raPddqjKrgxYcKECdMRTO0U7SU9+/vkCm+bmvnTH0yYMGHCdB5TXsDNv2bTsMzJZkXeaOWYMGHChOkIptkm98T55mdl4lnpGRMmTJgwnce0h0g2kF/DCVDOt0qSMWHChAnTQUxJWpgnujOmtjmaBB9tQRkTJkyYMJ3HFH1glLi2pdU27GiT9vpbMGHChAnTEUztNtpC8KxQm4cd+araMAgTJkyYMJ3BNLuY8ybl7HreoOfrqVNfTJgwYcL0WKZkS3kavCkEX2+p5diUnjFhwoQJ00lM+1Tzeol5UtoeW7v+IqXHhAkTJkwHMc0eu8xalZuCb/s0Jw8Riq4vJkyYMGF6IFN7JbcX86Zc+4513lALx4QJEyZMj2K6qx34jn/GmDVWk8BlFTdhwoQJE6aHMA3TwnXS2zYp29Q3nz8q8mLChAkTpscyzVqDSSE42cZdDdFZ0vtNAIQJEyZMmI5gesWj/cqcqU1uN99eNEExYcKECdNBTPe2DDfPdOoE9dajxYQJEyZMZzPlF+qsNNwud5YetyEOJkyYMGHC1JZQ88Bi88RnX5IePtzBhAkTJky/gGmW6Obbu77a21Agmb8o8mLChAkTpscytRdwe8XOSsD7xucssMCECRMmTCcxzUqieZKchwvJxb9PpKPjxIQJEyZMRzAZUUBgYMKECRMmTJgMTJgwfcr4C6LkAsHl1GE9AAAAAElFTkSuQmCC">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/jenkins/" rel="tag">jenkins</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Jenkins插件安装提速&url=https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html&pic=https://myxy99.github.io/img/user.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html&title=Jenkins插件安装提速" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Yangzzz&#39;s Blog&title=Jenkins插件安装提速&summary=Yangzzz&#34;s Blog&pics=https://myxy99.github.io/img/user.png&url=https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h1><p>配置Json其实在Jenkins的工作目录中</p>
+<pre><code class="cmd">cd {你的Jenkins工作目录}/updates  #进入更新配置位置</code></pre>
+<h3 id="第一种方式：使用vim"><a href="#第一种方式：使用vim" class="headerlink" title="第一种方式：使用vim"></a>第一种方式：使用vim</h3><pre><code class="cmd">vim default.json   #这个Json文件与上边的配置文件是相同的</code></pre>
+<p>使用vim的命令，如下，替换所有插件下载的url</p>
+<pre><code class="cmd">:1,$s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g</code></pre>
+<p>替换连接测试url</p>
+<pre><code class="cmd">:1,$s/http:\/\/www.google.com/https:\/\/www.baidu.com/g</code></pre>
+<pre><code>进入vim先输入：然后再粘贴上边的：后边的命令，注意不要写两个冒号！</code></pre><p>修改完成保存退出 </p>
+<pre><code class="cmd">:wq</code></pre>
+<h3 id="第二种方式：使用sed"><a href="#第二种方式：使用sed" class="headerlink" title="第二种方式：使用sed"></a>第二种方式：使用sed</h3><p>在updates目录下</p>
+<pre><code class="cmd">sed -i &#39;s/http:\/\/updates.jenkins-ci.org\/download/https:\/\/mirrors.tuna.tsinghua.edu.cn\/jenkins/g&#39; default.json &amp;&amp; sed -i &#39;s/http:\/\/www.google.com/https:\/\/www.baidu.com/g&#39; default.json</code></pre>
+<pre><code>这是直接修改的配置文件，如果前边Jenkins用sudo启动的话，那么这里的两个sed前均需要加上sudo</code></pre><p>重启Jenkins，简直超速！！</p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="#" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/">https://myxy99.github.io/2020/07/07/Jenkins%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85%E6%8F%90%E9%80%9F/</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2020/07/07/golang%E5%AE%9E%E7%8E%B0%E9%9B%AA%E8%8A%B1%E7%AE%97%E6%B3%95/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
