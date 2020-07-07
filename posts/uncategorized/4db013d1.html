@@ -46,7 +46,7 @@
     
     <title>
         
-            分类: jenkins | 
+            Golang邮件发送 | 
         
         Yangzzz&#39;s Blog
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no"/>
     <meta name="description" itemprop="description" content="Yangzzz&#34;s Blog">
-    <meta name="keywords" content="golang,php,python,程序员">
+    <meta name="keywords" content="golang,php,python,程序员,golang">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Yangzzz&#39;s Blog">
-    <meta name="msapplication-starturl" content="https://myxy99.cn/categories/jenkins/">
+    <meta name="msapplication-starturl" content="https://myxy99.cn/posts/uncategorized/4db013d1.html">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="Yangzzz&#39;s Blog">
@@ -233,13 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="https://myxy99.cn/categories/jenkins/">
+    <meta property="og:url" content="https://myxy99.cn/posts/uncategorized/4db013d1.html">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="分类: jenkins | Yangzzz&#39;s Blog">
+    <meta property="og:title" content="Golang邮件发送 | Yangzzz&#39;s Blog">
     <meta property="og:image" content="/img/user.png">
     <meta property="og:description" content="Yangzzz&#34;s Blog">
-    
+    <meta property="og:article:tag" content="golang"> 
 
+    
+        <meta property="article:published_time" content="Tue Jul 07 2020 19:27:48 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jul 07 2020 19:44:34 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,13 +250,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="https://myxy99.cn/categories/jenkins/index.html" />
+        <link rel="canonical" href="https://myxy99.cn/posts/uncategorized/4db013d1.html" />
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "https://myxy99.cn/posts/uncategorized/4db013d1.html",
+    "headline": "Golang邮件发送",
+    "datePublished": "Tue Jul 07 2020 19:27:48 GMT+0800",
+    "dateModified": "Tue Jul 07 2020 19:44:34 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Yangzzz",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/user.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Yangzzz&#39;s Blog",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/user.png"
+        }
+    },
+    "keywords": ",golanggolang,php,python,程序员",
+    "description": "Yangzzz&#34;s Blog",
+}
+</script>
 
 
     
@@ -287,98 +320,362 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#golang发送邮件"><span class="post-toc-number">1.</span> <span class="post-toc-text">golang发送邮件</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装库"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装库</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单代码实现"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">简单代码实现</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现抄送功能"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">实现抄送功能</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#发送html代码的邮件"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">发送html代码的邮件</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#实现邮件附件的发送"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">实现邮件附件的发送</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#连接池"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">连接池</span></a></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/posts/jenkins/87b776c7.html">Jenkins插件安装提速</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            操作步骤
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/posts/jenkins/87b776c7.html" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/user.png" width="44px" height="44px" alt="Yangzzz's avatar">
-            </div>
-            <div>
-                <strong>Yangzzz</strong>
-                <span>7月 07, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-              <!-- Category -->
-              <span class="post_entry-category">
-                  <a class="post_category-link" href="/categories/jenkins/">jenkins</a>
-              </span>
-            
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Golang邮件发送
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/user.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yangzzz</strong>
+        <span>7月 07, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">devices other</i>
+    <span class="visuallyhidden">devices other</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+    <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+    
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACbElEQVR42u3ay47CMAwFUP7/p2e2SIhybSehQqcrVPWRk0VtbD/+fvp44OHh4eHh4eHh3Yz3iI/n61/vfXfm9a7r8++elqwNDw8P7yTvw6c24F2/chU+2iA8PDy8g7xeMLimJou7fle+Njw8PLx78vKAMQ8qeHh4eL/Bq5YVkiCRbx8eHh7e3XiFP/xxMTdaULFIsbHWgoeHhxfzJg2w3b+/3N/Dw8PD2zx0lQSM62JuEgwKQ1d4eHh4G3h5K6vwaS6e6V3fHLrCw8PDW8qrfpp7BYhewbdQFMbDw8PbzEsKppNSRd766pWGo2IEHh4e3jbevBwwSoVbCToeHh7ed3n5R7n64uoSq+EKDw8P7yQvSVKvH5oPSyXp+ILghIeHh3eQV02Uq2XcSZm4sFo8PDy8zbxViXWedvfeWwhLeHh4eJt5vSGqeaG21+7a8o8BDw8Pr8jLG/O98YLq8EF1sKDZ38PDw8Mb8CZl2VWliuSuBSk1Hh4e3iLevOVfTcSTYDApBOPh4eHt5iWw6shUXnTItyMPWnh4eHhneL3SQDUYVLcjT+vx8PDwzvOqv3vjUMkAQTI68GEleHh4eDfgJQWFXtq9arAADw8P7zxv3vLvDWzl4wuFN+Lh4eFt5s0T30nLqlfk/XAlHh4e3mZe73M8GSyYv6s8OoCHh4e3gZcEg7zFlVOrISS6Eg8PD+8gb1UwSAq+1VCRt9zw8PDw7syrYnqLrgYSPDw8vLvx5htRbZUtnozAw8PDW8pLihHVAankaclGF0ILHh4e3hHeZNQpwU/aZsmW4eHh4Z3k/d6Bh4eHh4eHh4d3g+MfLazOSmi4BrIAAAAASUVORK5CYII=">
+    
+</ul>
+
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/golang/" rel="tag">golang</a>
+    </ul>
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Golang邮件发送&url=https://myxy99.cn/posts/uncategorized/4db013d1.html&pic=https://myxy99.cn/img/user.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+
+    <!-- Share Facebook -->
+    
+
+    <!-- Share Google+ -->
+    
+
+    <!-- Share LinkedIn -->
+    
+        <a class="post_share-link" href="https://www.linkedin.com/shareArticle?mini=true&url=https://myxy99.cn/posts/uncategorized/4db013d1.html&title=Golang邮件发送" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 LinkedIn
+            </li>
+        </a>
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=Yangzzz&#39;s Blog&title=Golang邮件发送&summary=Yangzzz&#34;s Blog&pics=https://myxy99.cn/img/user.png&url=https://myxy99.cn/posts/uncategorized/4db013d1.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="golang发送邮件"><a href="#golang发送邮件" class="headerlink" title="golang发送邮件"></a>golang发送邮件</h1><h2 id="安装库"><a href="#安装库" class="headerlink" title="安装库"></a>安装库</h2><pre><code class="golang">go get github.com/jordan-wright/email</code></pre>
+<h2 id="简单代码实现"><a href="#简单代码实现" class="headerlink" title="简单代码实现"></a>简单代码实现</h2><pre><code class="golang">package main
+
+import (
+    &quot;log&quot;
+    &quot;net/smtp&quot;
+    &quot;github.com/jordan-wright/email&quot;
+)
+
+func main() {
+    e := email.NewEmail()
+    //设置发送方的邮箱
+    e.From = &quot;112233 &lt;XXX@qq.com&gt;&quot;
+    // 设置接收方的邮箱
+    e.To = []string{&quot;XXX@qq.com&quot;}
+    //设置主题
+    e.Subject = &quot;这是主题&quot;
+    //设置文件发送的内容
+    e.Text = []byte(&quot;发送的内容&quot;)
+    //设置服务器相关的配置
+    err := e.Send(&quot;smtp.qq.com:25&quot;, smtp.PlainAuth(&quot;&quot;, &quot;你的邮箱账号&quot;, &quot;这块是你的授权码&quot;, &quot;smtp.qq.com&quot;))
+    if err != nil {
+       ....
+    }
+}</code></pre>
+<h2 id="实现抄送功能"><a href="#实现抄送功能" class="headerlink" title="实现抄送功能"></a>实现抄送功能</h2><pre><code class="golang">func main() {
+    ...
+    //设置抄送如果抄送多人逗号隔开
+    e.Cc = []string{&quot;XXX@qq.com&quot;,XXX@qq.com}
+    //设置秘密抄送
+    e.Bcc = []string{&quot;XXX@qq.com&quot;}
+    ...
+}</code></pre>
+<h2 id="发送html代码的邮件"><a href="#发送html代码的邮件" class="headerlink" title="发送html代码的邮件"></a>发送html代码的邮件</h2><pre><code class="golang">func main() {
+    ...
+    e.HTML = []byte(`
+    &lt;h1&gt;&lt;a href=&quot;http://www.baidu.com/&quot;&gt;百度&lt;/a&gt;&lt;/h1&gt;    
+    `)
+    ...
+}</code></pre>
+<h2 id="实现邮件附件的发送"><a href="#实现邮件附件的发送" class="headerlink" title="实现邮件附件的发送"></a>实现邮件附件的发送</h2><pre><code class="golang">func main() {
+    ...
+    e.AttachFile(&quot;./test.txt&quot;)
+    ...
+}</code></pre>
+<h2 id="连接池"><a href="#连接池" class="headerlink" title="连接池"></a>连接池</h2><p>每次调用Send时都会和 SMTP 服务器建立一次连接，如果发送邮件很多很频繁的话可能会有性能问题。email提供了连接池，可以复用网络连接：</p>
+<pre><code class="golang">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;log&quot;
+    &quot;net/smtp&quot;
+    &quot;os&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+    &quot;github.com/jordan-wright/email&quot;
+)
+
+func main() {
+    ch := make(chan *email.Email, 10)
+    p, err := email.NewPool(
+        &quot;smtp.qq.com:25&quot;,
+        4,
+        smtp.PlainAuth(&quot;&quot;, &quot;XXX@qq.com&quot;, &quot;你的授权码&quot;, &quot;smtp.qq.com&quot;),
+    )
+
+    if err != nil {
+        log.Fatal(&quot;failed to create pool:&quot;, err)
+    }
+
+    var wg sync.WaitGroup
+    wg.Add(4)
+    for i := 0; i &lt; 4; i++ {
+        go func() {
+            defer wg.Done()
+            for e := range ch {
+                err := p.Send(e, 10*time.Second)
+                if err != nil {
+                    fmt.Fprintf(os.Stderr, &quot;email:%v sent error:%v\n&quot;, e, err)
+                }
+            }
+        }()
+    }
+
+    for i := 0; i &lt; 10; i++ {
+        e := email.NewEmail()
+        e.From = &quot;dj &lt;XXX@qq.com&gt;&quot;
+        e.To = []string{&quot;XXX@qq.com&quot;}
+        e.Subject = &quot;Awesome web&quot;
+        e.Text = []byte(fmt.Sprintf(&quot;Awesome Web %d&quot;, i+1))
+        ch &lt;- e
+    }
+    close(ch)
+    wg.Wait()
+}</code></pre>
+<p>上面程序中，我们创建 4 goroutine 共用一个连接池发送邮件，发送 10 封邮件后程序退出。为了等邮件都发送完成或失败，程序才退出，我们使用了sync.WaitGroup。由于使用了 goroutine，邮件顺序不能保证。</p>
+<p>参考连接：<a href="https://github.com/darjun/go-daily-lib" target="_blank" rel="noopener">https://github.com/darjun/go-daily-lib</a></p>
+
+        
+                <blockquote style="margin: 2em 0 0;padding: 0.5em 1em;border-left: 3px solid #F44336;background-color: #F5F5F5;list-style: none;">
+                    <p><strong>
+                         
+                            This blog is under a <a href="#" target="_blank">CC BY-NC-SA 3.0 Unported License</a>
+                        </strong>
+                        <br>
+                        <strong>本文链接：</strong><a href="https://myxy99.cn/posts/uncategorized/4db013d1.html">https://myxy99.cn/posts/uncategorized/4db013d1.html</a>
+                    </p>
+                </blockquote>
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用 Gitalk -->
+<div id="gitalk-comment">
+    <!-- Gitalk 评论框 -->
+<div id="gitalk-container"></div>
+
+<link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js"></script>
+
+<script>
+    var gitalk = new Gitalk({
+            clientID: '00a0ec5bdacc1f01cf84',
+            clientSecret: 'c1b12ec34e646e714eccef2bdaff831d21e64b59',
+            repo: 'myxy99.github.io',
+            owner: 'myxy99',
+            admin: ['myxy99'],
+            id: md5(location.pathname),
+            // facebook-like distraction free mode
+            distractionFreeMode: false
+        })
+   gitalk.render('gitalk-container')
+</script>
+</div>
+<style>
+    #gitalk-comment {
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/posts/jenkins/87b776c7.html" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
