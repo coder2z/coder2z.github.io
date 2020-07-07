@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Golang-Redis简易封装</title>
+      <link href="/posts/golang/b9458491.html"/>
+      <url>/posts/golang/b9458491.html</url>
+      
+        <content type="html"><![CDATA[<h1 id="Golang-Redis"><a href="#Golang-Redis" class="headerlink" title="Golang Redis"></a>Golang Redis</h1><h2 id="下载依赖包"><a href="#下载依赖包" class="headerlink" title="下载依赖包"></a>下载依赖包</h2><pre><code class="golang">go get github.com/gomodule/redigo</code></pre><h2 id="Redis-操作封装"><a href="#Redis-操作封装" class="headerlink" title="Redis 操作封装"></a>Redis 操作封装</h2><h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><pre><code class="ini">[redis]Host = 127.0.0.1:6379Password =MaxIdle = 30MaxActive = 30IdleTimeout = 200</code></pre><h3 id="golang代码"><a href="#golang代码" class="headerlink" title="golang代码"></a>golang代码</h3><pre><code class="golang">package Redisimport (    &quot;encoding/json&quot;    &quot;time&quot;    &quot;wPan/v1/Config&quot; //加载配置    &quot;github.com/gomodule/redigo/redis&quot;)//定义redis连接池var Conn *redis.Pool//初始化func InitRedis() error {    Conn = &amp;redis.Pool{        MaxIdle:     Config.RedisSetting.MaxIdle,        MaxActive:   Config.RedisSetting.MaxActive,        IdleTimeout: Config.RedisSetting.IdleTimeout,        Dial: func() (redis.Conn, error) {            c, err := redis.Dial(&quot;tcp&quot;, Config.RedisSetting.Host)            if err != nil {                return nil, err            }            if Config.RedisSetting.Password != &quot;&quot; {                if _, err := c.Do(&quot;AUTH&quot;, Config.RedisSetting.Password); err != nil {                    _ = c.Close()                    return nil, err                }            }            return c, err        },        TestOnBorrow: func(c redis.Conn, t time.Time) error {            _, err := c.Do(&quot;PING&quot;)            return err        },    }    return nil}//redis 设置函数func Set(key string, data interface{}, time int) (bool, error) {    conn := Conn.Get()    defer conn.Close()    value, err := json.Marshal(data)    if err != nil {        return false, err    }    reply, err := redis.String(conn.Do(&quot;SET&quot;, key, value))    _, _ = conn.Do(&quot;EXPIRE&quot;, key, time)    return reply == &quot;OK&quot;, err}//redis 检测存在函数func Exists(key string) bool {    conn := Conn.Get()    defer conn.Close()    exists, err := redis.Bool(conn.Do(&quot;EXISTS&quot;, key))    if err != nil {        return false    }    return exists}//redis 获取函数func Get(key string) ([]byte, error) {    conn := Conn.Get()    defer conn.Close()    reply, err := redis.Bytes(conn.Do(&quot;GET&quot;, key))    if err != nil {        return nil, err    }    return reply, nil}//redis 删除函数func Delete(key string) (bool, error) {    conn := Conn.Get()    defer conn.Close()    return redis.Bool(conn.Do(&quot;DEL&quot;, key))}//redis 模糊删除函数func LikeDeletes(key string) error {    conn := Conn.Get()    defer conn.Close()    keys, err := redis.Strings(conn.Do(&quot;KEYS&quot;, &quot;*&quot;+key+&quot;*&quot;))    if err != nil {        return err    }    for _, key := range keys {        _, err = Delete(key)        if err != nil {            return err        }    }    return nil}</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><pre><code class="golang">if err := Redis.InitRedis(); err != nil {    log.Println(&quot;init redis failed, err:&quot; + err.Error())    return}</code></pre><h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><pre><code class="golang">...if Redis.Exists(&quot;Register_&quot; + s.Email) {    return R.SENDCODE_EXISTS, false}...if Redis.Get(&quot;Register_&quot; + s.Email) {    return R.SENDCODE_EXISTS, false}...</code></pre><p>使用很简单这里就不一一举例了。通过这样的封装redis操作就变得更加简单了。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang使用jwt</title>
       <link href="/posts/golang/631d0e90.html"/>
       <url>/posts/golang/631d0e90.html</url>
