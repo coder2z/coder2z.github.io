@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>Golang微服务开发-grpc</title>
+      <link href="/posts/golang/5f3710bf.html"/>
+      <url>/posts/golang/5f3710bf.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Fri Jul 10 2020 09:13:59 GMT+0800 (GMT+08:00) --><h1 id="什么是grpc"><a href="#什么是grpc" class="headerlink" title="什么是grpc"></a>什么是grpc</h1><p>grpc官网：<a href="https://www.grpc.io/" target="_blank" rel="noopener">https://www.grpc.io/</a></p><blockquote><p>A high-performance, open-source universal RPC framework</p></blockquote><p>这个是官方对他的解释。这里就出现了一个新的名称RPC。什么是RPC呢?RPC(remote procedure call 远程过程调用),所谓RPC框架实际是提供了一套机制，使得应用程序之间可以进行通信，而且也遵从server/client模型。使用的时候客户端调用server端提供的接口就像是调用本地的函数一样。</p><p>RPC结构图：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/20200710082403.png" alt=""></p><p>RPC调用过程：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/20200710082506.png" alt=""></p><p>GRPC结构图：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/20200710082558.png" alt=""></p><p>性能对比可以查看这篇文章：<a href="https://blog.csdn.net/xuduorui/article/details/77938644" target="_blank" rel="noopener">https://blog.csdn.net/xuduorui/article/details/77938644</a></p><h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>先安装Protobuf 编译器 protoc，下载地址：<a href="https://github.com/protocolbuffers/protobuf/releases" target="_blank" rel="noopener">https://github.com/protocolbuffers/protobuf/releases</a></p><p>Protobuf插件库安装：</p><pre><code class="golang">// gRPC运行时接口编解码支持库go get -u github.com/golang/protobuf/proto// 从 Proto文件(gRPC接口描述文件) 生成 go文件 的编译器插件go get -u github.com/golang/protobuf/protoc-gen-go</code></pre><p>go依赖包</p><pre><code class="golang">go get -u google.golang.org/grpc</code></pre><h1 id="定义服务，编写proto文件"><a href="#定义服务，编写proto文件" class="headerlink" title="定义服务，编写proto文件"></a>定义服务，编写proto文件</h1><p>编写proto文件的语法什么的，我后面会单独出一篇文章。这里就不多说语法了。</p><pre><code class="proto">syntax = &quot;proto3&quot;;package study;//  请求参数message Token {    string jwtToken = 1; //1为字段顺序 required必须    int64 timeStamp = 2;}//  返回参数message TokenR {    bool IsLogin = 1;}//  定义服务Auth//  服务方法CheckToken//  Token传入的值//  TokenR输出的值//  生成兼容grpc的go文件//  protoc --go_out=plugins=grpc:. *.protoservice Auth {    rpc CheckToken (Token) returns (TokenR);}```s# 生成兼容grpc的go文件```golangprotoc --go_out=plugins=grpc:. *.proto</code></pre><p>生成了对应的pb文件：<br><img src="https://gitee.com/myxy99/pic/raw/master/img/20200710083457.png" alt=""></p><h1 id="编写服务端"><a href="#编写服务端" class="headerlink" title="编写服务端"></a>编写服务端</h1><pre><code class="golang">package mainimport (   &quot;context&quot;   &quot;fmt&quot;   study &quot;goStudy/grpc/grpc001/auth&quot;   &quot;google.golang.org/grpc&quot;   &quot;net&quot;)type AuthImp struct {}func (a *AuthImp) CheckToken(ctx context.Context, token *study.Token) (*study.TokenR, error) {   s := token.JwtToken   fmt.Println(s)   /**   一些列处理   */   //数据的返回   res := new(study.TokenR)   res.IsLogin = true   return res, nil}func main() {   server := grpc.NewServer()   //注册   study.RegisterAuthServer(server, new(AuthImp))   lis, err := net.Listen(&quot;tcp&quot;, &quot;:8091&quot;)   if err != nil {      panic(err.Error())   }   _ = server.Serve(lis)}</code></pre><h1 id="编写客户端"><a href="#编写客户端" class="headerlink" title="编写客户端"></a>编写客户端</h1><pre><code class="golang">package mainimport (   &quot;context&quot;   &quot;fmt&quot;   study &quot;goStudy/grpc/grpc001/auth&quot;   &quot;google.golang.org/grpc&quot;   &quot;time&quot;)func main() {   //客户端连接   conn, err := grpc.Dial(&quot;localhost:8091&quot;, grpc.WithInsecure())   if err != nil {      panic(err.Error())   }   defer conn.Close()   authServiceClient := study.NewAuthClient(conn)   request := study.Token{      TimeStamp: time.Now().Unix(),      JwtToken:  &quot;3213213&quot;,   }   checkTokenClient, err := authServiceClient.CheckToken(context.Background(), &amp;request)   fmt.Println(checkTokenClient.IsLogin)}</code></pre><p>这样就完成了最简单的grpc功能。</p><p>这样的rpc接口只能在程序之间进行调用，但是我们最后的服务需要提供给用户使用，需要的是http请求。这里有几个方案进行解决：</p><blockquote><p>1.编写专门的提供http的web服务，web服务充当客户端，调用grpc。</p></blockquote><blockquote><p>2.使用GRPC Gateway: <a href="https://github.com/grpc-ecosystem/grpc-gateway/" target="_blank" rel="noopener">https://github.com/grpc-ecosystem/grpc-gateway/</a></p></blockquote><blockquote><p>3.使用第三方拓展：<a href="https://github.com/vaporz/turbo" target="_blank" rel="noopener">https://github.com/vaporz/turbo</a></p></blockquote><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> grpc </tag>
+            
+            <tag> 微服务 </tag>
+            
+            <tag> protobuf </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang实现一致性Hash算法</title>
       <link href="/posts/golang/6a0c048e.html"/>
       <url>/posts/golang/6a0c048e.html</url>
