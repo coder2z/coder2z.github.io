@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>Golang实现将Hexo博客文章推送到微信公众号</title>
+      <link href="/posts/golang/43d25c0d.html"/>
+      <url>/posts/golang/43d25c0d.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Wed Jul 15 2020 12:39:19 GMT+0800 (GMT+08:00) --><h1 id="Golang实现将Hexo博客文章推送到微信公众号"><a href="#Golang实现将Hexo博客文章推送到微信公众号" class="headerlink" title="Golang实现将Hexo博客文章推送到微信公众号"></a>Golang实现将Hexo博客文章推送到微信公众号</h1><p>最近在写博客的时候，就在想，能不能实现博客更新了然后就自动给别人提醒呢？比如每天提醒更新了什么博客。然后就有了这个项目，我的想法就是通过golang进行爬虫，把所有的文章都存储起来，获取到新的文章，然后把新的文章连接进行整合，发送到微信公众号，这样所有的关注了微信公众号的，就能收到，每天更新的新的博客。</p><h1 id="实现爬虫"><a href="#实现爬虫" class="headerlink" title="实现爬虫"></a>实现爬虫</h1><p>这里我选择的是colly爬虫框架。然后把爬取的数据进行数据库存储。</p><pre><code class="golang">package mainimport (    &quot;fmt&quot;    &quot;github.com/gocolly/colly&quot;    &quot;regexp&quot;    &quot;strings&quot;    &quot;wx-blog/config&quot;    Redis &quot;wx-blog/redis&quot;    &quot;wx-blog/utils&quot;)func main() {    i := config.Config{}    conf := i.GetConf()    redis := Redis.NewRedis(conf)    //爬虫采集 收集到redis    //获取需要爬取的地址    webList := redis.HGetAll(&quot;BlogUrl&quot;).Val()    for key, value := range webList {        c := colly.NewCollector(            colly.AllowedDomains(strings.Split(key, &quot;//&quot;)[1]),        )        c.OnRequest(func(request *colly.Request) {            //去重            ok, _ := redis.HExists(&quot;BlogUrl&quot;, utils.GetMd5(request.URL.String())).Result()            if ok {                request.Abort()                return            }            fmt.Println(request.URL.String())        })        c.OnHTML(&quot;a[href]&quot;, func(e *colly.HTMLElement) {            //获取所有a            _ = e.Request.Visit(e.Attr(&quot;href&quot;))        })        c.OnHTML(&quot;title&quot;, func(e *colly.HTMLElement) {            //文章页面正则提取            matched, _ := regexp.MatchString(value, e.Request.URL.String())            if matched {                //最新的连接存储到redis                redis.HSet(&quot;BlogUrl_req&quot;, e.Text, e.Request.URL.String())                //去记录重库                redis.HSet(&quot;BlogUrl_db&quot;, utils.GetMd5(e.Request.URL.String()), e.Text)            }        })        _ = c.Visit(key)    }}</code></pre><p><em>爬虫前需要把需要爬虫的网站信息存储到redis中</em></p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/15/20200715123711.png" alt=""></p><p>爬取结果：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/15/20200715123621.png" alt=""></p><h1 id="实现微信公众号数据的发送"><a href="#实现微信公众号数据的发送" class="headerlink" title="实现微信公众号数据的发送"></a>实现微信公众号数据的发送</h1><p>微信发送使用的群发接口，需要服务号认证才行。这里使用的是测试账号。</p><p>weix.go</p><pre><code class="golang">package weiximport (    &quot;encoding/json&quot;    &quot;errors&quot;    &quot;fmt&quot;    &quot;wx-blog/request&quot;)const (    WxGetAccessToken = &quot;https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&amp;appid=%v&amp;secret=%v&quot;    WxSendText       = &quot;https://api.weixin.qq.com/cgi-bin/message/mass/sendall?access_token=%v&quot;)type WeiX struct {    AppID       string    AppSecret   string    AccessToken string}//获取token方法func (w *WeiX) GetToken() (err error) {    url := fmt.Sprintf(WxGetAccessToken, w.AppID, w.AppSecret)    i := &amp;request.Request{}    i.Call(&quot;GET&quot;, url, nil)    if i.Err == nil {        var data map[string]interface{}        err = json.Unmarshal(i.Body, &amp;data)        if err == nil {            a := data[&quot;access_token&quot;]            if a != nil {                w.AccessToken = data[&quot;access_token&quot;].(string)                return            }            err = errors.New(&quot;请检查AppID，AppSecret&quot;)            return        }    }    return}//发送信息方法func (w *WeiX) Send(message string) (err error) {    url := fmt.Sprintf(WxSendText, w.AccessToken)    i := &amp;request.Request{}    i.Call(&quot;POST&quot;, url, []byte(message))    if i.Err == nil {        var data map[string]interface{}        err = json.Unmarshal(i.Body, &amp;data)        if err == nil {            fmt.Println(data)        }    }    return}</code></pre><p>wx.go</p><pre><code class="golang">package mainimport (    &quot;log&quot;    &quot;wx-blog/config&quot;    Redis &quot;wx-blog/redis&quot;    &quot;wx-blog/weix&quot;)func main() {    i := config.Config{}    conf := i.GetConf()    redis := Redis.NewRedis(conf)    //获取最新的文章：    data, err := redis.HGetAll(&quot;BlogUrl_req&quot;).Result()    if err != nil {        log.Panic(err.Error())    }    if data == nil {        log.Panic(&quot;没有新文章&quot;)        return    }    //封装发送的数据    var message string    for key, value := range data {        message += key + &quot;:&quot; + value + &quot;&lt;br&gt;&quot;    }    //初始化微信    wx := weix.WeiX{        AppSecret: conf.WX.AppSecret,        AppID:     conf.WX.AppID,    }    //获取Token    err = wx.GetToken()    if err != nil {        log.Panic(err.Error())    }    //封装消息    sendMessage := `{   &quot;filter&quot;:{      &quot;is_to_all&quot;:false,      &quot;tag_id&quot;:100   },   &quot;text&quot;:{      &quot;content&quot;:` + message + `   },    &quot;msgtype&quot;:&quot;text&quot;}`    //发送消息    err = wx.Send(sendMessage)    if err != nil {        log.Panic(err.Error())    }    //待发数据    redis.HDel(&quot;BlogUrl_req&quot;)    log.Println(&quot;文章发送成功!&quot;)}</code></pre><p>参考连接:<a href="https://github.com/gocolly/colly" target="_blank" rel="noopener">https://github.com/gocolly/colly</a></p><p>源码地址:<a href="https://github.com/myxy99/weixin-blog" target="_blank" rel="noopener">https://github.com/myxy99/weixin-blog</a></p><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 爬虫 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang遇上NSQ消息队列</title>
       <link href="/posts/golang/73e61957.html"/>
       <url>/posts/golang/73e61957.html</url>
