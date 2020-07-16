@@ -535,6 +535,33 @@
     </entry>
     
     
+    
+    <entry>
+      <title>laravel的Requests验证表单优化</title>
+      <link href="/posts/php/4d96b68.html"/>
+      <url>/posts/php/4d96b68.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Thu Jul 16 2020 11:20:45 GMT+0800 (GMT+08:00) --><h1 id="laravel的Requests验证表单优化"><a href="#laravel的Requests验证表单优化" class="headerlink" title="laravel的Requests验证表单优化"></a>laravel的Requests验证表单优化</h1><h2 id="首先使用-artisan-建立-request"><a href="#首先使用-artisan-建立-request" class="headerlink" title="首先使用 artisan 建立 request"></a>首先使用 artisan 建立 request</h2><pre><code class="sh"> php artisan make:request 方法名</code></pre><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111217.png" alt=""></p><p>就会在app/requests下生成对应文件名</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111253.png" alt=""></p><h2 id="验证用户权限"><a href="#验证用户权限" class="headerlink" title="验证用户权限"></a>验证用户权限</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111322.png" alt=""></p><h2 id="添加验证规则具体验证规则常考laravel手册"><a href="#添加验证规则具体验证规则常考laravel手册" class="headerlink" title="添加验证规则具体验证规则常考laravel手册"></a>添加验证规则具体验证规则常考laravel手册</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111347.png" alt=""></p><h2 id="设置返回提示内容"><a href="#设置返回提示内容" class="headerlink" title="设置返回提示内容"></a>设置返回提示内容</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111406.png" alt=""></p><h2 id="返回json"><a href="#返回json" class="headerlink" title="返回json"></a>返回json</h2><p>这样就可以进行表单验证了，如果是前后分离，就需要返回的为json的数据给前台，就可以重写方法failedValidation</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111450.png" alt=""></p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111522.png" alt=""></p><p><strong>返回示例：</strong></p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111728.png" alt=""></p><h2 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h2><pre><code class="php">&lt;?phpnamespace App\Http\Requests;use Illuminate\Foundation\Http\FormRequest;use Illuminate\Contracts\Validation\Validator;use Illuminate\Http\Exceptions\HttpResponseException;class LoginPost extends FormRequest{    /**     * Determine if the user is authorized to make this request.     *     * @return bool     */    //验证用户权限  true 为有权限    public function authorize()    {        return true;    }    /**     * Get the validation rules that apply to the request.     *     * @return array     */    public function rules()    {        return [            &#39;user_name&#39;=&gt;&#39;required&#39;,            &#39;user_pwd&#39;=&gt;&#39;required&#39;        ];    }    public function messages()    {        return [            &#39;user_name.required&#39;=&gt;&#39;用户名不能为空&#39;,            &#39;user_pwd.required&#39;=&gt;&#39;密码不能为空&#39;,        ];    }    protected function failedValidation(Validator $validator)    {        throw (new HttpResponseException(response()-&gt;json([            &#39;code&#39;=&gt;100,            $validator-&gt;errors(),        ],422)));    }}</code></pre><h2 id="前台ajax-返回错误信息"><a href="#前台ajax-返回错误信息" class="headerlink" title="前台ajax 返回错误信息"></a>前台ajax 返回错误信息</h2><pre><code class="js">error: function (msg) {    const json = JSON.parse(msg.responseText)[0];    var text = &quot;&quot;;    let x;    for (x in json) {        text += json[x];        text += &#39;&lt;br&gt;&#39;;    }    layer.alert(text, {title: &#39;提示&#39;, icon: 2});}</code></pre><h2 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h2><p>在后面的项目开发的时候，感觉前端的交互在错误渲染上，不太友好，前端交互不方便，这里我们处理了一下代码，现在得错误返回就是这样得：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111908.png" alt=""></p><p>这样前端只需要直接渲染这个数组就行了，具体的代码实现也简单，只需要修改failedValidation方法就行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/16/20200716111957.png" alt=""></p><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> php </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> php </tag>
+            
+            <tag> laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
 </search>
