@@ -4,33 +4,6 @@
   
     
     <entry>
-      <title>Python-matplotlib的使用</title>
-      <link href="/posts/python/65a90a81.html"/>
-      <url>/posts/python/65a90a81.html</url>
-      
-        <content type="html"><![CDATA[<!-- build time:Sat Jul 18 2020 20:17:44 GMT+0800 (GMT+08:00) --><h1 id="matplotlib的安装"><a href="#matplotlib的安装" class="headerlink" title="matplotlib的安装"></a>matplotlib的安装</h1><pre><code class="sh">pip install -U pip setuptoolspip install matplotlib</code></pre><h1 id="matplotlib的使用"><a href="#matplotlib的使用" class="headerlink" title="matplotlib的使用"></a>matplotlib的使用</h1><h2 id="散点图：scatter"><a href="#散点图：scatter" class="headerlink" title="散点图：scatter"></a>散点图：scatter</h2><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltN = 1000x = np.random.randn(N)y = np.random.randn(N)plt.scatter(x, y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718200657.png" alt=""></p><h2 id="折线图：plot"><a href="#折线图：plot" class="headerlink" title="折线图：plot"></a>折线图：plot</h2><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltx = np.linspace(-10, 10, 100)y = x**2plt.plot(x,y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201004.png" alt=""></p><h2 id="条形图：bar"><a href="#条形图：bar" class="headerlink" title="条形图：bar"></a>条形图：bar</h2><h3 id="普通条形图"><a href="#普通条形图" class="headerlink" title="普通条形图"></a>普通条形图</h3><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltN = 5y = [4, 6, 2, 1, 6]index = np.arange(N)plt.bar(left=index, height=y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201110.png" alt=""></p><h3 id="并列条形图"><a href="#并列条形图" class="headerlink" title="并列条形图"></a>并列条形图</h3><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltindex = np.arange(4)a = [32, 54, 67, 90]b = [44, 33, 67, 98]bar_width = 0.3plt.bar(index, a, bar_width, &quot;b&quot;)plt.bar(index+bar_width, b, bar_width, &quot;r&quot;)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201305.png" alt=""></p><h2 id="直方图：hist"><a href="#直方图：hist" class="headerlink" title="直方图：hist"></a>直方图：hist</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltmu = 100sigma = 20x = mu + sigma*np.random.randn(2000)plt.hist(x, bins=10, color=&quot;r&quot;, edgecolor=&quot;black&quot;, normed=True)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201406.png" alt=""></p><h2 id="饼状图：pie"><a href="#饼状图：pie" class="headerlink" title="饼状图：pie"></a>饼状图：pie</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltlabels = &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;fracs = [15, 29, 89, 54]explode = [0, 0.1, 0, 0] #设置突出显示的参数部分，此处表示只有B突出显示plt.axes(aspect=1) #使坐标轴横纵等距#autopct为在饼状图内部显示出相应的数据（百分比）plt.pie(x=fracs, labels=labels, autopct=&quot;%.0f%%&quot;, explode=explode)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201458.png" alt=""></p><h2 id="箱形图（箱线图）：boxplot"><a href="#箱形图（箱线图）：boxplot" class="headerlink" title="箱形图（箱线图）：boxplot"></a>箱形图（箱线图）：boxplot</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltnp.random.seed(100)data = np.random.normal(size=1000, loc=0, scale=1)#sym改变异常值的显示形状，whis表示虚线的长度plt.boxplot(data, sym=&quot;o&quot;, whis=1.5)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201541.png" alt=""></p><p>这里就简单距离了基础使用具体的设置的参数还有很多，就需要查看官方文档了。</p><p>官方文档：<a href="https://matplotlib.org/contents.html" target="_blank" rel="noopener">https://matplotlib.org/contents.html</a></p><!-- rebuild by neat -->]]></content>
-      
-      
-      <categories>
-          
-          <category> python </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> python </tag>
-            
-            <tag> matplotlib </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Golang与Apollo配置中心</title>
       <link href="/posts/golang/c57fb934.html"/>
       <url>/posts/golang/c57fb934.html</url>
@@ -718,6 +691,33 @@
             <tag> php </tag>
             
             <tag> laravel </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python-matplotlib的使用</title>
+      <link href="/posts/python/65a90a81.html"/>
+      <url>/posts/python/65a90a81.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Sat Jul 18 2020 20:31:55 GMT+0800 (GMT+08:00) --><h1 id="matplotlib的安装"><a href="#matplotlib的安装" class="headerlink" title="matplotlib的安装"></a>matplotlib的安装</h1><pre><code class="sh">pip install -U pip setuptoolspip install matplotlib</code></pre><h1 id="matplotlib的使用"><a href="#matplotlib的使用" class="headerlink" title="matplotlib的使用"></a>matplotlib的使用</h1><h2 id="散点图：scatter"><a href="#散点图：scatter" class="headerlink" title="散点图：scatter"></a>散点图：scatter</h2><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltN = 1000x = np.random.randn(N)y = np.random.randn(N)plt.scatter(x, y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718200657.png" alt=""></p><h2 id="折线图：plot"><a href="#折线图：plot" class="headerlink" title="折线图：plot"></a>折线图：plot</h2><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltx = np.linspace(-10, 10, 100)y = x**2plt.plot(x,y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201004.png" alt=""></p><h2 id="条形图：bar"><a href="#条形图：bar" class="headerlink" title="条形图：bar"></a>条形图：bar</h2><h3 id="普通条形图"><a href="#普通条形图" class="headerlink" title="普通条形图"></a>普通条形图</h3><p>使用:</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltN = 5y = [4, 6, 2, 1, 6]index = np.arange(N)plt.bar(left=index, height=y)plt.show()</code></pre><p>运行:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201110.png" alt=""></p><h3 id="并列条形图"><a href="#并列条形图" class="headerlink" title="并列条形图"></a>并列条形图</h3><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltindex = np.arange(4)a = [32, 54, 67, 90]b = [44, 33, 67, 98]bar_width = 0.3plt.bar(index, a, bar_width, &quot;b&quot;)plt.bar(index+bar_width, b, bar_width, &quot;r&quot;)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201305.png" alt=""></p><h2 id="直方图：hist"><a href="#直方图：hist" class="headerlink" title="直方图：hist"></a>直方图：hist</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltmu = 100sigma = 20x = mu + sigma*np.random.randn(2000)plt.hist(x, bins=10, color=&quot;r&quot;, edgecolor=&quot;black&quot;, normed=True)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201406.png" alt=""></p><h2 id="饼状图：pie"><a href="#饼状图：pie" class="headerlink" title="饼状图：pie"></a>饼状图：pie</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltlabels = &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;fracs = [15, 29, 89, 54]explode = [0, 0.1, 0, 0] #设置突出显示的参数部分，此处表示只有B突出显示plt.axes(aspect=1) #使坐标轴横纵等距#autopct为在饼状图内部显示出相应的数据（百分比）plt.pie(x=fracs, labels=labels, autopct=&quot;%.0f%%&quot;, explode=explode)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201458.png" alt=""></p><h2 id="箱形图（箱线图）：boxplot"><a href="#箱形图（箱线图）：boxplot" class="headerlink" title="箱形图（箱线图）：boxplot"></a>箱形图（箱线图）：boxplot</h2><p>使用：</p><pre><code class="python">import numpy as npimport matplotlib.pyplot as pltnp.random.seed(100)data = np.random.normal(size=1000, loc=0, scale=1)#sym改变异常值的显示形状，whis表示虚线的长度plt.boxplot(data, sym=&quot;o&quot;, whis=1.5)plt.show()</code></pre><p>运行：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718201541.png" alt=""></p><p>这里就简单距离了基础使用具体的设置的参数还有很多，就需要查看官方文档了。</p><p>官方文档：<a href="https://matplotlib.org/contents.html" target="_blank" rel="noopener">https://matplotlib.org/contents.html</a></p><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> python </tag>
+            
+            <tag> matplotlib </tag>
             
         </tags>
       
