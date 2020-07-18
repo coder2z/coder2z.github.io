@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Golang与Apollo配置中心</title>
+      <link href="/posts/golang/c57fb934.html"/>
+      <url>/posts/golang/c57fb934.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Sat Jul 18 2020 08:48:54 GMT+0800 (GMT+08:00) --><h1 id="Apollo-A-reliable-configuration-management-system"><a href="#Apollo-A-reliable-configuration-management-system" class="headerlink" title="Apollo - A reliable configuration management system"></a>Apollo - A reliable configuration management system</h1><p>Apollo（阿波罗）是携程框架部门研发的分布式配置中心，能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，适用于微服务配置管理场景。</p><p>服务端基于Spring Boot和Spring Cloud开发，打包后可以直接运行，不需要额外安装Tomcat等应用容器。</p><h2 id="安装-Quick-Start"><a href="#安装-Quick-Start" class="headerlink" title="安装(Quick-Start)"></a>安装(Quick-Start)</h2><p>Quick-Start 安装 是最简单的安装方案。不过这里需要注意的是，Quick-Start只针对本地测试使用，如果要部署到生产环境，还请另行参考分布式部署指南。</p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><h4 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h4><p>Java 1.8+</p><pre><code class="sh">&gt; java -versionjava version &quot;1.8.0_74&quot;Java(TM) SE Runtime Environment (build 1.8.0_74-b02)Java HotSpot(TM) 64-Bit Server VM (build 25.74-b02, mixed mode)</code></pre><h4 id="MySQL"><a href="#MySQL" class="headerlink" title="MySQL"></a>MySQL</h4><p>MySQL 5.6.5+</p><pre><code class="sql">SHOW VARIABLES WHERE Variable_name = &#39;version&#39;;</code></pre><h4 id="下载Quick-Start安装包"><a href="#下载Quick-Start安装包" class="headerlink" title="下载Quick-Start安装包"></a>下载Quick-Start安装包</h4><p>项目地址：<a href="https://github.com/nobodyiam/apollo-build-scripts" target="_blank" rel="noopener">https://github.com/nobodyiam/apollo-build-scripts</a></p><pre><code class="sh">git clone github.com/nobodyiam/apollo-build-scripts</code></pre><h2 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><p>Apollo服务端共需要两个数据库：ApolloPortalDB和ApolloConfigDB，我们把数据库、表的创建和样例数据都分别准备了sql文件，只需要导入数据库即可。</p><p>然后分别导入数据库文件：</p><pre><code class="sh">source /项目地址/sql/apolloportaldb.sqlsource /项目地址/sql/apolloconfigdb.sql</code></pre><h3 id="配置数据库连接信息"><a href="#配置数据库连接信息" class="headerlink" title="配置数据库连接信息"></a>配置数据库连接信息</h3><pre><code class="sh">vim demo.sh</code></pre><pre><code class="yml">#apollo config db infoapollo_config_db_url=jdbc:mysql://localhost:3306/ApolloConfigDB?characterEncoding=utf8apollo_config_db_username=用户名apollo_config_db_password=密码（如果没有密码，留空即可）# apollo portal db infoapollo_portal_db_url=jdbc:mysql://localhost:3306/ApolloPortalDB?characterEncoding=utf8apollo_portal_db_username=用户名apollo_portal_db_password=密码（如果没有密码，留空即可）</code></pre><h2 id="启动Apollo配置中心"><a href="#启动Apollo配置中心" class="headerlink" title="启动Apollo配置中心"></a>启动Apollo配置中心</h2><h3 id="确保端口未被占用"><a href="#确保端口未被占用" class="headerlink" title="确保端口未被占用"></a>确保端口未被占用</h3><pre><code class="sh">lsof -i:8080</code></pre><h3 id="执行启动脚本"><a href="#执行启动脚本" class="headerlink" title="执行启动脚本"></a>执行启动脚本</h3><pre><code class="sh">./demo.sh start</code></pre><p>当看到如下输出后，就说明启动成功了！</p><pre><code class="log">==== starting service ====Service logging file is ./service/apollo-service.logStarted [10768]Waiting for config service startup.......Config service started. You may visit http://localhost:8080 for service status now!Waiting for admin service startup....Admin service started==== starting portal ====Portal logging file is ./portal/apollo-portal.logStarted [10846]Waiting for portal startup......Portal started. You can visit http://localhost:8070 now!</code></pre><p>浏览器打开：http://域名或者ip:8070/ 验证安装</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718081558.png" alt=""></p><h1 id="Golang-Apollo客户端"><a href="#Golang-Apollo客户端" class="headerlink" title="Golang-Apollo客户端"></a>Golang-Apollo客户端</h1><h2 id="安装依赖包"><a href="#安装依赖包" class="headerlink" title="安装依赖包"></a>安装依赖包</h2><pre><code class="sh">go get -u github.com/shima-park/agollo</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>官方文档：<a href="https://github.com/shima-park/agollo" target="_blank" rel="noopener">https://github.com/shima-park/agollo</a></p><h3 id="获取配置"><a href="#获取配置" class="headerlink" title="获取配置"></a>获取配置</h3><p>Apollo中的配置：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718083852.png" alt=""></p><p>最简单的获取配置信息：</p><pre><code class="golang">package mainimport (    &quot;fmt&quot;    &quot;github.com/shima-park/agollo&quot;)func main() {    a, err := agollo.New(&quot;Apollo搭建的ip或者域名:8080&quot;, &quot;wpan&quot;, agollo.AutoFetchOnCacheMiss())    if err != nil {        panic(err)    }    fmt.Println(        // 配置项foo的value        //a.Get(&quot;rabbitmq_url&quot;),        // namespace为test.json的所有配置项        //a.GetNameSpace(&quot;test.json&quot;),        // namespace为Service.Mysql的所有配置项        a.GetNameSpace(&quot;Service.Mysql&quot;),        // 默认值, 为xxx提供一个默认bar        //a.Get(&quot;xxx&quot;, agollo.WithDefault(&quot;bar&quot;)),        // namespace为other_namespace, key为foo的value        //a.Get(&quot;foo&quot;, agollo.WithNamespace(&quot;other_namespace&quot;)),    )}</code></pre><p>运行结果:</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/18/20200718083940.png" alt=""></p><h2 id="配置监听"><a href="#配置监听" class="headerlink" title="配置监听"></a>配置监听</h2><pre><code class="golang">a, err := agollo.New(&quot;localhost:8080&quot;, &quot;your_appid&quot;, agollo.AutoFetchOnCacheMiss())// error handle...errorCh := a.Start()  // Start后会启动goroutine监听变化，并更新agollo对象内的配置cache// 或者忽略错误处理直接 a.Start()watchCh := a.Watch()for{    select{    case err := &lt;- errorCh:        // handle error    case resp := &lt;-watchCh:            fmt.Println(                &quot;Namesapce:&quot;, resp.Namesapce,                &quot;OldValue:&quot;, resp.OldValue,                &quot;NewValue:&quot;, resp.NewValue,                &quot;Error:&quot;, resp.Error,            )    }}</code></pre><p>还有很多用法可以参考官方文档。</p><p>参考连接：<a href="https://github.com/ctripcorp/apollo" target="_blank" rel="noopener">https://github.com/ctripcorp/apollo</a></p><p>参考连接：<a href="https://github.com/shima-park/agollo" target="_blank" rel="noopener">https://github.com/shima-park/agollo</a></p><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> Apollo </tag>
+            
+            <tag> 配置中心 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang使用WebSocket</title>
       <link href="/posts/golang/ad1387b3.html"/>
       <url>/posts/golang/ad1387b3.html</url>
