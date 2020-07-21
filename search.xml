@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Golang-mod</title>
+      <link href="/posts/golang/15b2f0b1.html"/>
+      <url>/posts/golang/15b2f0b1.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Tue Jul 21 2020 11:43:38 GMT+0800 (GMT+08:00) --><h1 id="Golang-mod"><a href="#Golang-mod" class="headerlink" title="Golang-mod"></a>Golang-mod</h1><p>go modules 是相关Go包的集合。modules是源代码交换和版本控制的单元。 go命令直接支持使用modules，包括记录和解析对其他模块的依赖性。modules替换旧的基于GOPATH的方法来指定在给定构建中使用哪些源文件。(go官方的解释)</p><h1 id="使用Mod"><a href="#使用Mod" class="headerlink" title="使用Mod"></a>使用Mod</h1><h2 id="开启go-mod"><a href="#开启go-mod" class="headerlink" title="开启go mod"></a>开启go mod</h2><pre><code class="go">go env -w GO111MODULE=on  // 开启go mod</code></pre><h2 id="go-mod有以下命令："><a href="#go-mod有以下命令：" class="headerlink" title="go mod有以下命令："></a>go mod有以下命令：</h2><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody><tr><td>download</td><td>download modules to local cache(下载依赖包)</td></tr><tr><td>edit</td><td>edit go.mod from tools or scripts(编辑go.mod)</td></tr><tr><td>graph</td><td>print module requirement graph (打印模块依赖图)</td></tr><tr><td>init</td><td>initialize new module in current directory（在当前目录初始化mod）</td></tr><tr><td>tidy</td><td>add missing and remove unused modules(拉取缺少的模块，移除不用的模块)</td></tr><tr><td>vendor</td><td>make vendored copy of dependencies(将依赖复制到vendor下)</td></tr><tr><td>verify</td><td>verify dependencies have expected content (验证依赖是否正确）</td></tr><tr><td>why</td><td>explain why packages or modules are needed(解释为什么需要依赖)</td></tr></tbody></table><h2 id="使用replace替换无法直接获取的package"><a href="#使用replace替换无法直接获取的package" class="headerlink" title="使用replace替换无法直接获取的package"></a>使用replace替换无法直接获取的package</h2><p>由于某些已知的原因，并不是所有的package都能成功下载，比如：golang.org下的包。</p><p>modules 可以通过在 go.mod 文件中使用 replace 指令替换成github上对应的库，比如：</p><pre><code>replace (    golang.org/x/crypto v0.0.0-20190313024323-a1f597ede03a =&gt; github.com/golang/crypto v0.0.0-20190313024323-a1f597ede03a)</code></pre><p><strong>也可以replace使用导入自定义包</strong></p><p>在我们开发微服务的适合，每个微服务都需要一个mod，比如这样：</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/21/20200721112455.png" alt=""></p><p>但是这样会出现问题，就是在不使用Gopath的情况下，不方便导入pb包，所有这是就需要自定义包：</p><p>只需要在需要使用pb包的mod中添加就行</p><pre><code class="go">require (    github.com/gin-gonic/gin v1.6.3    github.com/micro/go-micro/v2 v2.9.1    micro-auth/auth-srv v0.0.0)replace micro-auth/auth-srv =&gt; ../auth-srv</code></pre><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang与Apollo配置中心</title>
       <link href="/posts/golang/c57fb934.html"/>
       <url>/posts/golang/c57fb934.html</url>
