@@ -4,6 +4,37 @@
   
     
     <entry>
+      <title>go-micro开发微服务聊天室</title>
+      <link href="/posts/golang/519a5b6e.html"/>
+      <url>/posts/golang/519a5b6e.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Fri Jul 24 2020 14:12:29 GMT+0800 (GMT+08:00) --><h1 id="基于go-micro开发的微服务聊天室"><a href="#基于go-micro开发的微服务聊天室" class="headerlink" title="基于go-micro开发的微服务聊天室"></a>基于go-micro开发的微服务聊天室</h1><h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><blockquote><p>微服务框架：go-micro</p></blockquote><blockquote><p>web框架：gin</p></blockquote><blockquote><p>orm:gorm</p></blockquote><blockquote><p>websocket</p></blockquote><blockquote><p>配置中心：apollo</p></blockquote><blockquote><p>jwt</p></blockquote><h2 id="网站架构"><a href="#网站架构" class="headerlink" title="网站架构"></a>网站架构</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724132536.png" alt="网站架构"></p><h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><p>修改common/config/config.go 中的apollo的host</p><p>apollo中添加配置</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724140425.png" alt=""></p><p>启动认证服务</p><pre><code>cd auth/auth-svrgo run main.go</code></pre><p>启动认证服务api</p><pre><code>cd auth/auth-webgo run main.go</code></pre><p>启动socket服务</p><pre><code>cd socket/socket-svrgo run main.go</code></pre><p>启动socket服务api</p><pre><code>cd socket/socket-webgo run main.go</code></pre><p>启动网关</p><pre><code>micro api --handler=http</code></pre><p>项目地址：<a href="https://github.com/myxy99/go-chat" target="_blank" rel="noopener">https://github.com/myxy99/go-chat</a></p><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> 微服务 </tag>
+            
+            <tag> go-micro </tag>
+            
+            <tag> websocket </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Golang-mod</title>
       <link href="/posts/golang/15b2f0b1.html"/>
       <url>/posts/golang/15b2f0b1.html</url>
