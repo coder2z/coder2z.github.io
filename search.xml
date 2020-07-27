@@ -4,11 +4,40 @@
   
     
     <entry>
+      <title>单链表中间节点</title>
+      <link href="/posts/python/a85bf3bb.html"/>
+      <url>/posts/python/a85bf3bb.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Mon Jul 27 2020 13:28:34 GMT+0800 (GMT+08:00) --><h1 id="单链表中间节点"><a href="#单链表中间节点" class="headerlink" title="单链表中间节点"></a>单链表中间节点</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>首先先遍历一遍获得节点个数，然后取一半作计数器再次遍历。这个方法遍历了两次，是最慢的方法</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点index = 0  # 总节点数while head.next is not None:    index += 1    head = head.nexthead = n5for i in range(0, int(index / 2)):    head = head.nextprint(head.data)</code></pre><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>一个指针(P1)每次步进一个节点，另一个指针(P2)每次步进两个节点。当P2遍历到链表尾时，P1正好遍历到中间节点。（这个思路真的学到了）</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点P1 = head  # 一次步进1个nodeP2 = head  # 一次步进2个nodewhile P2.next is not None and P2.next.next is not None:    P2 = P2.next.next    P1 = P1.nextprint(P1.data)</code></pre><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> python </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> python </tag>
+            
+            <tag> 链表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>go-micro开发微服务聊天室</title>
       <link href="/posts/golang/519a5b6e.html"/>
       <url>/posts/golang/519a5b6e.html</url>
       
-        <content type="html"><![CDATA[<!-- build time:Fri Jul 24 2020 14:12:29 GMT+0800 (GMT+08:00) --><h1 id="基于go-micro开发的微服务聊天室"><a href="#基于go-micro开发的微服务聊天室" class="headerlink" title="基于go-micro开发的微服务聊天室"></a>基于go-micro开发的微服务聊天室</h1><h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><blockquote><p>微服务框架：go-micro</p></blockquote><blockquote><p>web框架：gin</p></blockquote><blockquote><p>orm:gorm</p></blockquote><blockquote><p>websocket</p></blockquote><blockquote><p>配置中心：apollo</p></blockquote><blockquote><p>jwt</p></blockquote><h2 id="网站架构"><a href="#网站架构" class="headerlink" title="网站架构"></a>网站架构</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724132536.png" alt="网站架构"></p><h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><p>修改common/config/config.go 中的apollo的host</p><p>apollo中添加配置</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724140425.png" alt=""></p><p>启动认证服务</p><pre><code>cd auth/auth-svrgo run main.go</code></pre><p>启动认证服务api</p><pre><code>cd auth/auth-webgo run main.go</code></pre><p>启动socket服务</p><pre><code>cd socket/socket-svrgo run main.go</code></pre><p>启动socket服务api</p><pre><code>cd socket/socket-webgo run main.go</code></pre><p>启动网关</p><pre><code>micro api --handler=http</code></pre><p>项目地址：<a href="https://github.com/myxy99/go-chat" target="_blank" rel="noopener">https://github.com/myxy99/go-chat</a></p><!-- rebuild by neat -->]]></content>
+        <content type="html"><![CDATA[<!-- build time:Mon Jul 27 2020 13:28:34 GMT+0800 (GMT+08:00) --><h1 id="基于go-micro开发的微服务聊天室"><a href="#基于go-micro开发的微服务聊天室" class="headerlink" title="基于go-micro开发的微服务聊天室"></a>基于go-micro开发的微服务聊天室</h1><h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><blockquote><p>微服务框架：go-micro</p></blockquote><blockquote><p>web框架：gin</p></blockquote><blockquote><p>orm:gorm</p></blockquote><blockquote><p>websocket</p></blockquote><blockquote><p>配置中心：apollo</p></blockquote><blockquote><p>jwt</p></blockquote><h2 id="网站架构"><a href="#网站架构" class="headerlink" title="网站架构"></a>网站架构</h2><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724132536.png" alt="网站架构"></p><h2 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h2><p>修改common/config/config.go 中的apollo的host</p><p>apollo中添加配置</p><p><img src="https://gitee.com/myxy99/pic/raw/master/img/blog/2020/07/24/20200724140425.png" alt=""></p><p>启动认证服务</p><pre><code>cd auth/auth-svrgo run main.go</code></pre><p>启动认证服务api</p><pre><code>cd auth/auth-webgo run main.go</code></pre><p>启动socket服务</p><pre><code>cd socket/socket-svrgo run main.go</code></pre><p>启动socket服务api</p><pre><code>cd socket/socket-webgo run main.go</code></pre><p>启动网关</p><pre><code>micro api --handler=http</code></pre><p>项目地址：<a href="https://github.com/myxy99/go-chat" target="_blank" rel="noopener">https://github.com/myxy99/go-chat</a></p><!-- rebuild by neat -->]]></content>
       
       
       <categories>
