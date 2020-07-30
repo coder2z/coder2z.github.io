@@ -4,11 +4,38 @@
   
     
     <entry>
+      <title>Golang-MongoDb方法封装</title>
+      <link href="/posts/golang/c3fc687c.html"/>
+      <url>/posts/golang/c3fc687c.html</url>
+      
+        <content type="html"><![CDATA[<!-- build time:Thu Jul 30 2020 14:43:11 GMT+0800 (GMT+08:00) --><h1 id="Golang操作MongoDb"><a href="#Golang操作MongoDb" class="headerlink" title="Golang操作MongoDb"></a>Golang操作MongoDb</h1><h2 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h2><pre><code class="go">go get -u github.com/globalsign/mgo</code></pre><h2 id="MongoDb的方法封装"><a href="#MongoDb的方法封装" class="headerlink" title="MongoDb的方法封装"></a>MongoDb的方法封装</h2><pre><code class="go">/*** @Author: myxy99 &lt;myxy99@foxmail.com&gt;* @Date: 2020/7/30 14:16 */package mongoDbimport (    &quot;fmt&quot;    &quot;github.com/globalsign/mgo&quot;    &quot;log&quot;)type ClientImp interface {    connect(db, collection string) (*mgo.Session, *mgo.Collection)    Insert(db, collection string, docs ...interface{}) error    FindOne(db, collection string, query, selector, result interface{}) error    FindAll(db, collection string, query, selector, result interface{}) error    Update(db, collection string, query, update interface{}) error    Remove(db, collection string, query interface{}) error}type Client struct {    cfg CallerCfg    m   *mgo.Session}type cLogger struct{}func (c *cLogger) Output(calldepth int, s string) error {    fmt.Println(&quot;calldepth: &quot;, calldepth, &quot;, s: &quot;, s)    return nil}func (c *Client) connect(db, collection string) (*mgo.Session, *mgo.Collection) {    s := c.m.Copy()    return s, s.DB(db).C(collection)}func (c *Client) Insert(db, collection string, docs ...interface{}) error {    ms, mc := c.connect(db, collection)    defer ms.Close()    return mc.Insert(docs...)}func (c *Client) FindOne(db, collection string, query, selector, result interface{}) error {    ms, mc := c.connect(db, collection)    defer ms.Close()    return mc.Find(query).Select(selector).One(result)}func (c *Client) FindAll(db, collection string, query, selector, result interface{}) error {    ms, mc := c.connect(db, collection)    defer ms.Close()    return mc.Find(query).Select(selector).All(result)}func (c *Client) Update(db, collection string, query, update interface{}) error {    ms, mc := c.connect(db, collection)    defer ms.Close()    return mc.Update(query, update)}func (c *Client) Remove(db, collection string, query interface{}) error {    ms, mc := c.connect(db, collection)    defer ms.Close()    return mc.Remove(query)}func Run(cfg CallerCfg) (c *Client, err error) {    var (        m        *mgo.Session        dialInfo *mgo.DialInfo    )    dialInfo = &amp;mgo.DialInfo{        Addrs:    []string{cfg.URL},        Source:   cfg.Source,        Username: cfg.User,        Password: cfg.Password,    }    m, err = mgo.DialWithInfo(dialInfo)    if err != nil {        log.Fatalln(&quot;create session error &quot;, err)    }    mgo.SetLogger(&amp;cLogger{})    mgo.SetDebug(cfg.Debug)    // Optional. Switch the session to a monotonic behavior.    m.SetMode(mgo.Monotonic, true)    return &amp;Client{cfg, m}, err}</code></pre><h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><pre><code class="go">/*** @Author: myxy99 &lt;myxy99@foxmail.com&gt;* @Date: 2020/7/30 14:34 */package mongoDbimport (    &quot;github.com/globalsign/mgo/bson&quot;    &quot;testing&quot;)type Movie struct {    Id   bson.ObjectId `bson:&quot;_id&quot; json:&quot;id&quot;`    Name string        `bson:&quot;name&quot; json:&quot;name&quot;`}const (    db         = &quot;Movies&quot;    collection = &quot;MovieModel&quot;)func TestClient_Insert(t *testing.T) {    var (        cfg CallerCfg        c   *Client        err error    )    cfg = CallerCfg{        Debug:    true,        URL:      &quot;127.0.0.1:27017&quot;,        Source:   &quot;admin&quot;,        User:     &quot;&quot;,        Password: &quot;&quot;,    }    c, err = Run(cfg)    if err != nil {        panic(err.Error())    }    err = c.Insert(db, collection, Movie{        Id:   bson.NewObjectId(),        Name: &quot;test123&quot;,    })}</code></pre><!-- rebuild by neat -->]]></content>
+      
+      
+      <categories>
+          
+          <category> golang </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> golang </tag>
+            
+            <tag> MongoDb </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>单链表中间节点</title>
       <link href="/posts/python/a85bf3bb.html"/>
       <url>/posts/python/a85bf3bb.html</url>
       
-        <content type="html"><![CDATA[<!-- build time:Mon Jul 27 2020 13:28:34 GMT+0800 (GMT+08:00) --><h1 id="单链表中间节点"><a href="#单链表中间节点" class="headerlink" title="单链表中间节点"></a>单链表中间节点</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>首先先遍历一遍获得节点个数，然后取一半作计数器再次遍历。这个方法遍历了两次，是最慢的方法</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点index = 0  # 总节点数while head.next is not None:    index += 1    head = head.nexthead = n5for i in range(0, int(index / 2)):    head = head.nextprint(head.data)</code></pre><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>一个指针(P1)每次步进一个节点，另一个指针(P2)每次步进两个节点。当P2遍历到链表尾时，P1正好遍历到中间节点。（这个思路真的学到了）</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点P1 = head  # 一次步进1个nodeP2 = head  # 一次步进2个nodewhile P2.next is not None and P2.next.next is not None:    P2 = P2.next.next    P1 = P1.nextprint(P1.data)</code></pre><!-- rebuild by neat -->]]></content>
+        <content type="html"><![CDATA[<!-- build time:Thu Jul 30 2020 14:43:11 GMT+0800 (GMT+08:00) --><h1 id="单链表中间节点"><a href="#单链表中间节点" class="headerlink" title="单链表中间节点"></a>单链表中间节点</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><p>首先先遍历一遍获得节点个数，然后取一半作计数器再次遍历。这个方法遍历了两次，是最慢的方法</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点index = 0  # 总节点数while head.next is not None:    index += 1    head = head.nexthead = n5for i in range(0, int(index / 2)):    head = head.nextprint(head.data)</code></pre><h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>一个指针(P1)每次步进一个节点，另一个指针(P2)每次步进两个节点。当P2遍历到链表尾时，P1正好遍历到中间节点。（这个思路真的学到了）</p><pre><code class="python">class Node:    def __init__(self, data, next):        self.data = data        self.next = nextn1 = Node(&quot;1&quot;, None)n2 = Node(&quot;2&quot;, n1)n3 = Node(&quot;3&quot;, n2)n4 = Node(&quot;4&quot;, n3)n5 = Node(&quot;5&quot;, n4)head = n5  # 链表的头节点P1 = head  # 一次步进1个nodeP2 = head  # 一次步进2个nodewhile P2.next is not None and P2.next.next is not None:    P2 = P2.next.next    P1 = P1.nextprint(P1.data)</code></pre><!-- rebuild by neat -->]]></content>
       
       
       <categories>
