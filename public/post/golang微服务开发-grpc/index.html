@@ -1,0 +1,105 @@
+<!doctype html><html lang=en data-theme=dark><head><title>Coder2z | Golang微服务开发-grpc</title><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="Hi I'm Coder2z, nice to meet you"><link rel=stylesheet href=http://myxy99.cn/css/style.min.d98386e9809c4644e290afb256e8aad6d2ae6b1aefe82c504efd652e6642708d.css integrity="sha256-2YOG6YCcRkTikK+yVuiq1tKuaxrv6CxQTv1lLmZCcI0=" crossorigin=anonymous type=text/css><link rel=stylesheet href=http://myxy99.cn/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS+yuWSR4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=http://myxy99.cn/favicons/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=http://myxy99.cn/favicons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=http://myxy99.cn/favicons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=http://myxy99.cn/favicons/favicon-16x16.png><link rel=canonical href=http://myxy99.cn/post/golang%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%BC%80%E5%8F%91-grpc/><script type=text/javascript src=http://myxy99.cn/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ=" crossorigin=anonymous></script><script type=text/javascript src=http://myxy99.cn/js/anatole-theme-switcher.min.8ef71e0fd43f21a303733dbbecae5438b791d2b826c68a9883bd7aa459a076d2.js integrity="sha256-jvceD9Q/IaMDcz277K5UOLeR0rgmxoqYg716pFmgdtI=" crossorigin=anonymous></script><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="http://myxy99.cn/images/site-feature-image.png"><meta name=twitter:title content="Golang微服务开发-grpc"><meta name=twitter:description content="什么是grpc grpc官网：https://www.grpc.io/
+ A high-performance, open-source universal RPC framework
+ 这个是官方对他的解释。这里就出现了一个新的名称RPC。什么是RPC呢?"></head><body><div class="sidebar ."><div class=logo-title><div class=title><img src=http://myxy99.cn/images/profile.png alt="profile picture"><h3 title><a href=/>I'm Coder2z</a></h3><div class=description><p>Hi I'm Coder2z, nice to meet you</p></div></div></div><ul class=social-links><li><a href=https://github.com/Coder2z rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:Coder2z@qq.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul><div class=footer><div class=by_farbox>&copy; Coder2z 2019-2021</div></div></div><div class=main><div class="page-top ."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span><span aria-hidden=true></span><span aria-hidden=true></span></a><ul class=nav id=navMenu><li><a href=/ title>Home</a></li><li><a href=/post/ title>Posts</a></li><li><a href=/categories/ title>categories</a></li><li><a href=/tags/ title>tags</a></li><li><a href=/about/ title>About</a></li><li><a href=/links/ title>links</a></li><li class=theme-switch-item><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></div><div class=autopagerize_page_element><div class=content><div class="post ."><div class=post-content><div class=post-title><h3>Golang微服务开发-grpc</h3><div class=info><em class="fas fa-calendar-day"></em><span class=date>Fri, Jul 10, 2020</span>
+<em class="fas fa-stopwatch"></em><span class=reading-time>2-minute read</span></div></div><h1 id=什么是grpc>什么是grpc</h1><p>grpc官网：<a href=https://www.grpc.io/>https://www.grpc.io/</a></p><blockquote><p>A high-performance, open-source universal RPC framework</p></blockquote><p>这个是官方对他的解释。这里就出现了一个新的名称RPC。什么是RPC呢?RPC(remote procedure call 远程过程调用),所谓RPC框架实际是提供了一套机制，使得应用程序之间可以进行通信，而且也遵从server/client模型。使用的时候客户端调用server端提供的接口就像是调用本地的函数一样。</p><p>RPC结构图：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/20200710082403.png alt></p><p>RPC调用过程：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/20200710082506.png alt></p><p>GRPC结构图：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/20200710082558.png alt></p><p>性能对比可以查看这篇文章：<a href=https://blog.csdn.net/xuduorui/article/details/77938644>https://blog.csdn.net/xuduorui/article/details/77938644</a></p><h1 id=准备工作>准备工作</h1><p>先安装Protobuf 编译器 protoc，下载地址：<a href=https://github.com/protocolbuffers/protobuf/releases>https://github.com/protocolbuffers/protobuf/releases</a></p><p>Protobuf插件库安装：</p><pre><code class=language-golang>// gRPC运行时接口编解码支持库
+go get -u github.com/golang/protobuf/proto
+// 从 Proto文件(gRPC接口描述文件) 生成 go文件 的编译器插件
+go get -u github.com/golang/protobuf/protoc-gen-go
+
+</code></pre><p>go依赖包</p><pre><code class=language-golang>go get -u google.golang.org/grpc
+
+</code></pre><h1 id=定义服务编写proto文件>定义服务，编写proto文件</h1><p>编写proto文件的语法什么的，我后面会单独出一篇文章。这里就不多说语法了。</p><pre><code class=language-proto>syntax = &quot;proto3&quot;;
+package study;
+
+//  请求参数
+message Token {
+    string jwtToken = 1; //1为字段顺序
+    int64 timeStamp = 2;
+}
+
+//  返回参数
+message TokenR {
+    bool IsLogin = 1;
+}
+
+//  定义服务Auth
+//  服务方法CheckToken
+//  Token传入的值
+//  TokenR输出的值
+//  生成兼容grpc的go文件
+//  protoc --go_out=plugins=grpc:. *.proto
+service Auth {
+    rpc CheckToken (Token) returns (TokenR);
+}
+
+</code></pre><h1 id=生成兼容grpc的go文件>生成兼容grpc的go文件</h1><pre><code class=language-golang>protoc --go_out=plugins=grpc:. *.proto
+
+</code></pre><p>生成了对应的pb文件：
+<img src=https://gitee.com/coder2m/pic/raw/master/img/20200710083457.png alt></p><h1 id=编写服务端>编写服务端</h1><pre><code class=language-golang>package main
+
+import (
+   &quot;context&quot;
+   &quot;fmt&quot;
+   study &quot;goStudy/grpc/grpc001/auth&quot;
+   &quot;google.golang.org/grpc&quot;
+   &quot;net&quot;
+)
+
+type AuthImp struct {
+}
+
+func (a *AuthImp) CheckToken(ctx context.Context, token *study.Token) (*study.TokenR, error) {
+   s := token.JwtToken
+   fmt.Println(s)
+   /**
+   一些列处理
+   */
+   //数据的返回
+   res := new(study.TokenR)
+   res.IsLogin = true
+   return res, nil
+}
+
+func main() {
+   server := grpc.NewServer()
+   //注册
+   study.RegisterAuthServer(server, new(AuthImp))
+
+   lis, err := net.Listen(&quot;tcp&quot;, &quot;:8091&quot;)
+   if err != nil {
+      panic(err.Error())
+   }
+   _ = server.Serve(lis)
+}
+
+</code></pre><h1 id=编写客户端>编写客户端</h1><pre><code class=language-golang>package main
+
+import (
+   &quot;context&quot;
+   &quot;fmt&quot;
+   study &quot;goStudy/grpc/grpc001/auth&quot;
+   &quot;google.golang.org/grpc&quot;
+   &quot;time&quot;
+)
+
+func main() {
+   //客户端连接
+   conn, err := grpc.Dial(&quot;localhost:8091&quot;, grpc.WithInsecure())
+   if err != nil {
+      panic(err.Error())
+   }
+   defer conn.Close()
+
+   authServiceClient := study.NewAuthClient(conn)
+
+   request := study.Token{
+      TimeStamp: time.Now().Unix(),
+      JwtToken:  &quot;3213213&quot;,
+   }
+
+   checkTokenClient, err := authServiceClient.CheckToken(context.Background(), &amp;request)
+   fmt.Println(checkTokenClient.IsLogin)
+}
+
+</code></pre><p>这样就完成了最简单的grpc功能。</p><p>这样的rpc接口只能在程序之间进行调用，但是我们最后的服务需要提供给用户使用，需要的是http请求。这里有几个方案进行解决：</p><blockquote><p>1.编写专门的提供http的web服务，web服务充当客户端，调用grpc。</p></blockquote><blockquote><p>2.使用GRPC Gateway: <a href=https://github.com/grpc-ecosystem/grpc-gateway/>https://github.com/grpc-ecosystem/grpc-gateway/</a></p></blockquote><blockquote><p>3.使用第三方拓展：<a href=https://github.com/vaporz/turbo>https://github.com/vaporz/turbo</a></p></blockquote></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/golang/>golang</a></span>
+<span class=separator><a class=tag href=/tags/grpc/>grpc</a><a class=tag href=/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/>微服务</a><a class=tag href=/tags/protobuf/>protobuf</a><a class=tag href=/tags/golang/>golang</a></span></div></div></div></div></div></div><script type=text/javascript src=http://myxy99.cn/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script></body></html>
