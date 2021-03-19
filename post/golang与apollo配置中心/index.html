@@ -43,9 +43,9 @@ Started [10846]
 Waiting for portal startup......
 Portal started. You can visit http://localhost:8070 now!
 
-</code></pre><p>浏览器打开：http://域名或者ip:8070/ 验证安装</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/18/20200718081558.png alt></p><h1 id=golang-apollo客户端>Golang-Apollo客户端</h1><h2 id=安装依赖包>安装依赖包</h2><pre><code class=language-sh>go get -u github.com/shima-park/agollo
+</code></pre><p>浏览器打开：http://域名或者ip:8070/ 验证安装</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718081558.png alt></p><h1 id=golang-apollo客户端>Golang-Apollo客户端</h1><h2 id=安装依赖包>安装依赖包</h2><pre><code class=language-sh>go get -u github.com/shima-park/agollo
 
-</code></pre><h2 id=使用>使用</h2><p>官方文档：<a href=https://github.com/shima-park/agollo>https://github.com/shima-park/agollo</a></p><h3 id=获取配置>获取配置</h3><p>Apollo中的配置：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/18/20200718083852.png alt></p><p>最简单的获取配置信息：</p><pre><code class=language-golang>package main
+</code></pre><h2 id=使用>使用</h2><p>官方文档：<a href=https://github.com/shima-park/agollo>https://github.com/shima-park/agollo</a></p><h3 id=获取配置>获取配置</h3><p>Apollo中的配置：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718083852.png alt></p><p>最简单的获取配置信息：</p><pre><code class=language-golang>package main
 
 import (
 	&quot;fmt&quot;
@@ -76,7 +76,7 @@ func main() {
 	)
 }
 
-</code></pre><p>运行结果:</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/18/20200718083940.png alt></p><h2 id=配置监听>配置监听</h2><pre><code class=language-golang>a, err := agollo.New(&quot;localhost:8080&quot;, &quot;your_appid&quot;, agollo.AutoFetchOnCacheMiss())
+</code></pre><p>运行结果:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718083940.png alt></p><h2 id=配置监听>配置监听</h2><pre><code class=language-golang>a, err := agollo.New(&quot;localhost:8080&quot;, &quot;your_appid&quot;, agollo.AutoFetchOnCacheMiss())
 // error handle...
 
 errorCh := a.Start()  // Start后会启动goroutine监听变化，并更新agollo对象内的配置cache

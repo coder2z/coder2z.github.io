@@ -29,7 +29,7 @@ func main() {
 	fmt.Println(x)
 }
 
-</code></pre><p>按理说这里的 13 与 3.5 类型也是不一样的，为什么就没有报错呢？</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/20200915113134.png alt></p><h2 id=计算>计算</h2><p>数值运算的操作数必须具有相同的类型，除非该运算涉及移位或未类型化的常量。</p><p>我们看看下面这段代码：</p><pre><code class=language-go>package main
+</code></pre><p>按理说这里的 13 与 3.5 类型也是不一样的，为什么就没有报错呢？</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200915113134.png alt></p><h2 id=计算>计算</h2><p>数值运算的操作数必须具有相同的类型，除非该运算涉及移位或未类型化的常量。</p><p>我们看看下面这段代码：</p><pre><code class=language-go>package main
 
 import (
 	&quot;fmt&quot;

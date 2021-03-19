@@ -24,10 +24,10 @@ func TestValidator(t *testing.T) {
 }
 
 </code></pre><p>我们使用postman请求测试下：</p><p>拒绝：
-<img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713084519.png alt></p><p>通过：
-<img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713084911.png alt></p><p>可以看到表单验证已经生效，但是错误提示的字段不是特别友好，我们首先需要整理成前端能够解析的样子，在考虑翻译的问题。</p><h1 id=优化返回格式>优化返回格式</h1><p>我们这里可以看到所有的验证输出都是来之或者ShouldBind后的err，我们就先看看这个err在哪里定义的，这里可以通过fmt包查看他的类型，就知道他定义的位置。</p><pre><code class=language-golang>fmt.Printf(&quot;%T \n&quot;, err)
+<img src=https://oss.myxy99.cn/images/2020/07/13/20200713084519.png alt></p><p>通过：
+<img src=https://oss.myxy99.cn/images/2020/07/13/20200713084911.png alt></p><p>可以看到表单验证已经生效，但是错误提示的字段不是特别友好，我们首先需要整理成前端能够解析的样子，在考虑翻译的问题。</p><h1 id=优化返回格式>优化返回格式</h1><p>我们这里可以看到所有的验证输出都是来之或者ShouldBind后的err，我们就先看看这个err在哪里定义的，这里可以通过fmt包查看他的类型，就知道他定义的位置。</p><pre><code class=language-golang>fmt.Printf(&quot;%T \n&quot;, err)
       
-</code></pre><p>这里发现他的类型为:</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713085854.png alt></p><p>下一步就是找到他的定义了。然后发现他是一个FieldError切片类型：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713090619.png alt></p><p>然后我们继续看看FieldError是个什么东西：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713090827.png alt></p><p>发现这里的FieldError是一个接口类型，里面的接口想必就是获取各种信息的。我们打印一下看看，所有我们需要改一下我们的代码，这里我就随便打印几个，其实我们看下官方在接口定义哪里的注释，也大概能明白什么意思。</p><pre><code class=language-golang>		if err != nil {
+</code></pre><p>这里发现他的类型为:</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713085854.png alt></p><p>下一步就是找到他的定义了。然后发现他是一个FieldError切片类型：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713090619.png alt></p><p>然后我们继续看看FieldError是个什么东西：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713090827.png alt></p><p>发现这里的FieldError是一个接口类型，里面的接口想必就是获取各种信息的。我们打印一下看看，所有我们需要改一下我们的代码，这里我就随便打印几个，其实我们看下官方在接口定义哪里的注释，也大概能明白什么意思。</p><pre><code class=language-golang>		if err != nil {
 			fmt.Printf(&quot;%T \n&quot;, err)
 			errors := err.(validator.ValidationErrors)
 
@@ -46,7 +46,7 @@ func TestValidator(t *testing.T) {
 				&quot;msg&quot;: &quot;通过验证&quot;,
 			})
 		}
-</code></pre><p>访问接口=>输出</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713091434.png alt></p><p>这里也就很明显了。我们现在就能拿到我们错误信息进行封装返回了。我们小改一下代码：</p><pre><code class=language-golang>func getParamError(err validator.ValidationErrors) map[string]string {
+</code></pre><p>访问接口=>输出</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713091434.png alt></p><p>这里也就很明显了。我们现在就能拿到我们错误信息进行封装返回了。我们小改一下代码：</p><pre><code class=language-golang>func getParamError(err validator.ValidationErrors) map[string]string {
 	result := make(map[string]string, 0)
 	for _, v := range err {
 		result[v.Field()] = v.Tag()
@@ -75,7 +75,7 @@ func TestValidator(t *testing.T) {
 	_ = app.Run(&quot;:8888&quot;)
 }
 
-</code></pre><p>现在访问一下再看看：</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713092201.png alt></p><p>但是这样对于前端，还是不好获取，所有我把他改为数组。前端只需要循环这个数组就行。</p><p><img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/13/20200713101702.png alt></p><h1 id=自定义字段校验方法>自定义字段校验方法</h1><pre><code class=language-golang>type UserLoginParam struct {
+</code></pre><p>现在访问一下再看看：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713092201.png alt></p><p>但是这样对于前端，还是不好获取，所有我把他改为数组。前端只需要循环这个数组就行。</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713101702.png alt></p><h1 id=自定义字段校验方法>自定义字段校验方法</h1><pre><code class=language-golang>type UserLoginParam struct {
 	Name     string `form:&quot;name&quot; json:&quot;name&quot; binding:&quot;required,min=2,max=30,bookableDate&quot;`
 	Password string `form:&quot;password&quot; json:&quot;password&quot; binding:&quot;required,min=8,max=40&quot;`
 }

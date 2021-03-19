@@ -15,7 +15,7 @@ type Department struct {
 }
 
 </code></pre><p>生成的表结构：
-<img src=https://gitee.com/coder2m/pic/raw/master/img/blog/2020/07/11/20200711101256.png alt></p><h2 id=外键>外键</h2><p>默认的外键使用所有者类型名称加上其主键。像上面的例子，为了声明一个模型属于 User，它的外键应该为 UserID。</p><p>GORM 提供了一个定制外键的方法，例如:</p><pre><code class=language-golang>type User struct {
+<img src=https://oss.myxy99.cn/images/2020/07/11/20200711101256.png alt></p><h2 id=外键>外键</h2><p>默认的外键使用所有者类型名称加上其主键。像上面的例子，为了声明一个模型属于 User，它的外键应该为 UserID。</p><p>GORM 提供了一个定制外键的方法，例如:</p><pre><code class=language-golang>type User struct {
     gorm.Model
     Name string
 }
