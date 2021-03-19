@@ -1,0 +1,131 @@
+<!doctype html><html lang=en data-theme=dark><head><title>Coder2z | Gin表单绑定验证器</title><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="Hi I'm Coder2z, nice to meet you"><meta name=google-site-verification content="6Ld_cYUaAAAAAKNjRV3jy68ulOBIGwDf1bQSW-tR"><link rel=stylesheet href=/css/style.min.d98386e9809c4644e290afb256e8aad6d2ae6b1aefe82c504efd652e6642708d.css integrity="sha256-2YOG6YCcRkTikK+yVuiq1tKuaxrv6CxQTv1lLmZCcI0=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS+yuWSR4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/images/favicons/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/images/favicons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicons/favicon-32x32.ico><link rel=icon type=image/png sizes=16x16 href=/images/favicons/favicon-16x16.ico><link rel=canonical href=/post/golang/gin%E8%A1%A8%E5%8D%95%E7%BB%91%E5%AE%9A%E9%AA%8C%E8%AF%81%E5%99%A8/><script type=text/javascript src=/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/anatole-theme-switcher.min.8ef71e0fd43f21a303733dbbecae5438b791d2b826c68a9883bd7aa459a076d2.js integrity="sha256-jvceD9Q/IaMDcz277K5UOLeR0rgmxoqYg716pFmgdtI=" crossorigin=anonymous></script><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/images/site-feature-image.png"><meta name=twitter:title content="Gin表单绑定验证器"><meta name=twitter:description content="gin中内置validator的基础使用 type UserLoginParam struct { Name string `form:&#34;name&#34; json:&#34;name&#34; binding:&#34;required,min=2,max=30&#34;` Password string `form:&#34;password&#34; json:&#34;password&#34; binding:&#34;required,min=8,max=40&#34;` } func TestValidator(t *testing."><script>var _hmt=_hmt||[];(function(){var a=document.createElement("script"),b;a.src="https://hm.baidu.com/hm.js?bbb1780a746024ee4c292bc26aab8ba6",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></head><body><div class="sidebar ."><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>I'm Coder2z</a></h3><div class=description><p>Hi I'm Coder2z, nice to meet you</p></div></div></div><ul class=social-links><li><a href=https://github.com/Coder2z rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href="http://sighttp.qq.com/msgrd?v=1&uin=2399158611" rel=me aria-label=QQ><i class="fab fa-qq fa-2x" aria-hidden=true></i></a></li><li><a href=https://t.me/Coder_Y rel=me aria-label=telegram><i class="fab fa-telegram fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:Coder2z@qq.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul><div class=footer><div class=by_farbox><a href=https://beian.miit.gov.cn/ rel=nofollow>蜀ICP备19008334号-1</a></div><div class=by_farbox>&copy; Coder2z 2019-2021</div></div></div><div class=main><div class="page-top ."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span><span aria-hidden=true></span><span aria-hidden=true></span></a><ul class=nav id=navMenu><li><a href=/ title>Home</a></li><li><a href=/post/ title>Posts</a></li><li><a href=/categories/ title>categories</a></li><li><a href=/tags/ title>tags</a></li><li><a href=/about/ title>About</a></li><li><a href=/links/ title>links</a></li><li class=theme-switch-item><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></div><div class=autopagerize_page_element><div class=content><div class="post ."><div class=post-content><div class=post-title><h3>Gin表单绑定验证器</h3><div class=info><em class="fas fa-calendar-day"></em><span class=date>Mon, Jul 13, 2020</span>
+<em class="fas fa-stopwatch"></em><span class=reading-time>2-minute read</span></div></div><h1 id=gin中内置validator的基础使用>gin中内置validator的基础使用</h1><pre><code class=language-golang>type UserLoginParam struct {
+	Name     string `form:&quot;name&quot; json:&quot;name&quot; binding:&quot;required,min=2,max=30&quot;`
+	Password string `form:&quot;password&quot; json:&quot;password&quot; binding:&quot;required,min=8,max=40&quot;`
+}
+
+func TestValidator(t *testing.T) {
+	app := gin.New()
+	app.POST(&quot;/login&quot;, func(context *gin.Context) {
+		var userLoginService UserLoginParam
+		err := context.ShouldBind(&amp;userLoginService)
+		if err != nil {
+			context.JSON(http.StatusUnprocessableEntity, gin.H{
+				&quot;msg&quot;: err.Error(),
+			})
+		}else{
+			context.JSON(http.StatusOK, gin.H{
+				&quot;msg&quot;: &quot;通过验证&quot;,
+			})
+		}
+		return
+	})
+	_ = app.Run(&quot;:8888&quot;)
+}
+
+</code></pre><p>我们使用postman请求测试下：</p><p>拒绝：
+<img src=https://oss.myxy99.cn/images/2020/07/13/20200713084519.png alt></p><p>通过：
+<img src=https://oss.myxy99.cn/images/2020/07/13/20200713084911.png alt></p><p>可以看到表单验证已经生效，但是错误提示的字段不是特别友好，我们首先需要整理成前端能够解析的样子，在考虑翻译的问题。</p><h1 id=优化返回格式>优化返回格式</h1><p>我们这里可以看到所有的验证输出都是来之或者ShouldBind后的err，我们就先看看这个err在哪里定义的，这里可以通过fmt包查看他的类型，就知道他定义的位置。</p><pre><code class=language-golang>fmt.Printf(&quot;%T \n&quot;, err)
+      
+</code></pre><p>这里发现他的类型为:</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713085854.png alt></p><p>下一步就是找到他的定义了。然后发现他是一个FieldError切片类型：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713090619.png alt></p><p>然后我们继续看看FieldError是个什么东西：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713090827.png alt></p><p>发现这里的FieldError是一个接口类型，里面的接口想必就是获取各种信息的。我们打印一下看看，所有我们需要改一下我们的代码，这里我就随便打印几个，其实我们看下官方在接口定义哪里的注释，也大概能明白什么意思。</p><pre><code class=language-golang>		if err != nil {
+			fmt.Printf(&quot;%T \n&quot;, err)
+			errors := err.(validator.ValidationErrors)
+
+			for _, value := range errors {
+				fmt.Println(value.Kind())
+				fmt.Println(value.Field())
+				fmt.Println(value.ActualTag())
+			}
+
+
+			context.JSON(http.StatusUnprocessableEntity, gin.H{
+				&quot;msg&quot;: err.Error(),
+			})
+		} else {
+			context.JSON(http.StatusOK, gin.H{
+				&quot;msg&quot;: &quot;通过验证&quot;,
+			})
+		}
+</code></pre><p>访问接口=>输出</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713091434.png alt></p><p>这里也就很明显了。我们现在就能拿到我们错误信息进行封装返回了。我们小改一下代码：</p><pre><code class=language-golang>func getParamError(err validator.ValidationErrors) map[string]string {
+	result := make(map[string]string, 0)
+	for _, v := range err {
+		result[v.Field()] = v.Tag()
+	}
+	return result
+}
+
+func TestValidator(t *testing.T) {
+	app := gin.Default()
+	app.POST(&quot;/login&quot;, func(context *gin.Context) {
+		var userLoginService UserLoginParam
+		err := context.ShouldBind(&amp;userLoginService)
+		if err != nil {
+			fmt.Printf(&quot;%T \n&quot;, err)
+			errors := err.(validator.ValidationErrors)
+			context.JSON(http.StatusUnprocessableEntity, gin.H{
+				&quot;msg&quot;: getParamError(errors),
+			})
+		} else {
+			context.JSON(http.StatusOK, gin.H{
+				&quot;msg&quot;: &quot;通过验证&quot;,
+			})
+		}
+		return
+	})
+	_ = app.Run(&quot;:8888&quot;)
+}
+
+</code></pre><p>现在访问一下再看看：</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713092201.png alt></p><p>但是这样对于前端，还是不好获取，所有我把他改为数组。前端只需要循环这个数组就行。</p><p><img src=https://oss.myxy99.cn/images/2020/07/13/20200713101702.png alt></p><h1 id=自定义字段校验方法>自定义字段校验方法</h1><pre><code class=language-golang>type UserLoginParam struct {
+	Name     string `form:&quot;name&quot; json:&quot;name&quot; binding:&quot;required,min=2,max=30,bookableDate&quot;`
+	Password string `form:&quot;password&quot; json:&quot;password&quot; binding:&quot;required,min=8,max=40&quot;`
+}
+
+func getParamError(err validator.ValidationErrors) []string {
+	result := make([]string, 0)
+	for _, v := range err {
+		result = append(result, fmt.Sprintf(&quot;%v错误：%v&quot;, v.Field(), v.Tag()))
+	}
+	return result
+}
+
+// customFunc 自定义字段级别校验方法
+var bookableDate validator.Func = func(fl validator.FieldLevel) bool {
+	date, ok := fl.Field().Interface().(time.Time)
+	if ok {
+		today := time.Now()
+		if today.After(date) {
+			return false
+		}
+	}
+	return true
+}
+
+func TestValidator(t *testing.T) {
+
+	if v, ok := binding.Validator.Engine().(*validator.Validate); ok {
+		//注册
+		_ = v.RegisterValidation(&quot;bookableDate&quot;, bookableDate)
+	}
+
+	app := gin.Default()
+	app.POST(&quot;/login&quot;, func(context *gin.Context) {
+		var userLoginService UserLoginParam
+		err := context.ShouldBind(&amp;userLoginService)
+		if err != nil {
+			errors := err.(validator.ValidationErrors)
+			context.JSON(http.StatusUnprocessableEntity, gin.H{
+				&quot;msg&quot;: getParamError(errors),
+			})
+
+		} else {
+			context.JSON(http.StatusOK, gin.H{
+				&quot;msg&quot;: &quot;通过验证&quot;,
+			})
+		}
+		return
+	})
+	_ = app.Run(&quot;:8888&quot;)
+}
+
+</code></pre><p>参考连接：<a href=https://gin-gonic.com/zh-cn/docs/examples/custom-validators/>https://gin-gonic.com/zh-cn/docs/examples/custom-validators/</a></p><p>参考连接：<a href=https://github.com/go-playground/validator/>https://github.com/go-playground/validator/</a></p><p>参考连接：<a href=https://www.liwenzhou.com/posts/Go/validator_usages/>https://www.liwenzhou.com/posts/Go/validator_usages/</a></p></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/golang/>golang</a></span>
+<span class=separator><a class=tag href=/tags/golang/>golang</a><a class=tag href=/tags/gin/>gin</a></span></div></div><div id=fb_comments_container><h2>comments</h2><script src=https://utteranc.es/client.js repo=coder2z/coder2z.github.io issue-term=pathname theme=github-dark crossorigin=anonymous async></script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>

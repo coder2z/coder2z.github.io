@@ -1,0 +1,66 @@
+<!doctype html><html lang=en data-theme=dark><head><title>Coder2z | Python-matplotlib的使用</title><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name=description content="Hi I'm Coder2z, nice to meet you"><meta name=google-site-verification content="6Ld_cYUaAAAAAKNjRV3jy68ulOBIGwDf1bQSW-tR"><link rel=stylesheet href=/css/style.min.d98386e9809c4644e290afb256e8aad6d2ae6b1aefe82c504efd652e6642708d.css integrity="sha256-2YOG6YCcRkTikK+yVuiq1tKuaxrv6CxQTv1lLmZCcI0=" crossorigin=anonymous type=text/css><link rel=stylesheet href=/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS+yuWSR4=" crossorigin=anonymous type=text/css><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin=anonymous><link rel="shortcut icon" href=/images/favicons/favicon.ico type=image/x-icon><link rel=apple-touch-icon sizes=180x180 href=/images/favicons/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/images/favicons/favicon-32x32.ico><link rel=icon type=image/png sizes=16x16 href=/images/favicons/favicon-16x16.ico><link rel=canonical href=/post/python/python-matplotlib%E7%9A%84%E4%BD%BF%E7%94%A8/><script type=text/javascript src=/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ=" crossorigin=anonymous></script><script type=text/javascript src=/js/anatole-theme-switcher.min.8ef71e0fd43f21a303733dbbecae5438b791d2b826c68a9883bd7aa459a076d2.js integrity="sha256-jvceD9Q/IaMDcz277K5UOLeR0rgmxoqYg716pFmgdtI=" crossorigin=anonymous></script><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="/images/site-feature-image.png"><meta name=twitter:title content="Python-matplotlib的使用"><meta name=twitter:description content="matplotlib的安装 pip install -U pip setuptools pip install matplotlib  matplotlib的使用 散点图：scatter 使用:"><script>var _hmt=_hmt||[];(function(){var a=document.createElement("script"),b;a.src="https://hm.baidu.com/hm.js?bbb1780a746024ee4c292bc26aab8ba6",b=document.getElementsByTagName("script")[0],b.parentNode.insertBefore(a,b)})()</script></head><body><div class="sidebar ."><div class=logo-title><div class=title><img src=/images/profile.png alt="profile picture"><h3 title><a href=/>I'm Coder2z</a></h3><div class=description><p>Hi I'm Coder2z, nice to meet you</p></div></div></div><ul class=social-links><li><a href=https://github.com/Coder2z rel=me aria-label=GitHub><i class="fab fa-github fa-2x" aria-hidden=true></i></a></li><li><a href="http://sighttp.qq.com/msgrd?v=1&uin=2399158611" rel=me aria-label=QQ><i class="fab fa-qq fa-2x" aria-hidden=true></i></a></li><li><a href=https://t.me/Coder_Y rel=me aria-label=telegram><i class="fab fa-telegram fa-2x" aria-hidden=true></i></a></li><li><a href=mailto:Coder2z@qq.com rel=me aria-label=e-mail><i class="fas fa-envelope fa-2x" aria-hidden=true></i></a></li></ul><div class=footer><div class=by_farbox><a href=https://beian.miit.gov.cn/ rel=nofollow>蜀ICP备19008334号-1</a></div><div class=by_farbox>&copy; Coder2z 2019-2021</div></div></div><div class=main><div class="page-top ."><a role=button class=navbar-burger data-target=navMenu aria-label=menu aria-expanded=false><span aria-hidden=true></span><span aria-hidden=true></span><span aria-hidden=true></span></a><ul class=nav id=navMenu><li><a href=/ title>Home</a></li><li><a href=/post/ title>Posts</a></li><li><a href=/categories/ title>categories</a></li><li><a href=/tags/ title>tags</a></li><li><a href=/about/ title>About</a></li><li><a href=/links/ title>links</a></li><li class=theme-switch-item><a class=theme-switch title="Switch Theme"><i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></li></ul></div><div class=autopagerize_page_element><div class=content><div class="post ."><div class=post-content><div class=post-title><h3>Python-matplotlib的使用</h3><div class=info><em class="fas fa-calendar-day"></em><span class=date>Sun, Mar 15, 2020</span>
+<em class="fas fa-stopwatch"></em><span class=reading-time>One-minute read</span></div></div><h1 id=matplotlib的安装>matplotlib的安装</h1><pre><code class=language-sh>pip install -U pip setuptools
+
+pip install matplotlib
+
+</code></pre><h1 id=matplotlib的使用>matplotlib的使用</h1><h2 id=散点图scatter>散点图：scatter</h2><p>使用:</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+N = 1000
+x = np.random.randn(N)
+y = np.random.randn(N)
+plt.scatter(x, y)
+plt.show()
+
+</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718200657.png alt></p><h2 id=折线图plot>折线图：plot</h2><p>使用:</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+x = np.linspace(-10, 10, 100)
+y = x**2
+plt.plot(x,y)
+plt.show()
+
+</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201004.png alt></p><h2 id=条形图bar>条形图：bar</h2><h3 id=普通条形图>普通条形图</h3><p>使用:</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+N = 5
+y = [4, 6, 2, 1, 6]
+index = np.arange(N)
+plt.bar(left=index, height=y)
+plt.show()
+
+</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201110.png alt></p><h3 id=并列条形图>并列条形图</h3><p>使用：</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+index = np.arange(4)
+a = [32, 54, 67, 90]
+b = [44, 33, 67, 98]
+bar_width = 0.3
+plt.bar(index, a, bar_width, &quot;b&quot;)
+plt.bar(index+bar_width, b, bar_width, &quot;r&quot;)
+plt.show()
+
+</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201305.png alt></p><h2 id=直方图hist>直方图：hist</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+mu = 100
+sigma = 20
+x = mu + sigma*np.random.randn(2000)
+plt.hist(x, bins=10, color=&quot;r&quot;, edgecolor=&quot;black&quot;, normed=True)
+plt.show()
+
+</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201406.png alt></p><h2 id=饼状图pie>饼状图：pie</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+labels = &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;
+fracs = [15, 29, 89, 54]
+explode = [0, 0.1, 0, 0] #设置突出显示的参数部分，此处表示只有B突出显示
+plt.axes(aspect=1) #使坐标轴横纵等距
+#autopct为在饼状图内部显示出相应的数据（百分比）
+plt.pie(x=fracs, labels=labels, autopct=&quot;%.0f%%&quot;, explode=explode)
+plt.show()
+
+</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201458.png alt></p><h2 id=箱形图箱线图boxplot>箱形图（箱线图）：boxplot</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+import matplotlib.pyplot as plt
+np.random.seed(100)
+data = np.random.normal(size=1000, loc=0, scale=1)
+#sym改变异常值的显示形状，whis表示虚线的长度
+plt.boxplot(data, sym=&quot;o&quot;, whis=1.5)
+plt.show()
+
+</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201541.png alt></p><p>这里就简单距离了基础使用具体的设置的参数还有很多，就需要查看官方文档了。</p><p>官方文档：<a href=https://matplotlib.org/contents.html>https://matplotlib.org/contents.html</a></p></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/python/>python</a></span>
+<span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/matplotlib/>matplotlib</a></span></div></div><div id=fb_comments_container><h2>comments</h2><script src=https://utteranc.es/client.js repo=coder2z/coder2z.github.io issue-term=pathname theme=github-dark crossorigin=anonymous async></script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>
