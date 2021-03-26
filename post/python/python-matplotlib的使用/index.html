@@ -11,14 +11,14 @@ y = np.random.randn(N)
 plt.scatter(x, y)
 plt.show()
 
-</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718200657.png alt></p><h2 id=折线图plot>折线图：plot</h2><p>使用:</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行:</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718200657.png alt></p><h2 id=折线图plot>折线图：plot</h2><p>使用:</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 x = np.linspace(-10, 10, 100)
 y = x**2
 plt.plot(x,y)
 plt.show()
 
-</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201004.png alt></p><h2 id=条形图bar>条形图：bar</h2><h3 id=普通条形图>普通条形图</h3><p>使用:</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行:</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201004.png alt></p><h2 id=条形图bar>条形图：bar</h2><h3 id=普通条形图>普通条形图</h3><p>使用:</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 N = 5
 y = [4, 6, 2, 1, 6]
@@ -26,7 +26,7 @@ index = np.arange(N)
 plt.bar(left=index, height=y)
 plt.show()
 
-</code></pre><p>运行:</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201110.png alt></p><h3 id=并列条形图>并列条形图</h3><p>使用：</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行:</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201110.png alt></p><h3 id=并列条形图>并列条形图</h3><p>使用：</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 index = np.arange(4)
 a = [32, 54, 67, 90]
@@ -36,7 +36,7 @@ plt.bar(index, a, bar_width, &quot;b&quot;)
 plt.bar(index+bar_width, b, bar_width, &quot;r&quot;)
 plt.show()
 
-</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201305.png alt></p><h2 id=直方图hist>直方图：hist</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行：</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201305.png alt></p><h2 id=直方图hist>直方图：hist</h2><p>使用：</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 mu = 100
 sigma = 20
@@ -44,7 +44,7 @@ x = mu + sigma*np.random.randn(2000)
 plt.hist(x, bins=10, color=&quot;r&quot;, edgecolor=&quot;black&quot;, normed=True)
 plt.show()
 
-</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201406.png alt></p><h2 id=饼状图pie>饼状图：pie</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行：</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201406.png alt></p><h2 id=饼状图pie>饼状图：pie</h2><p>使用：</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 labels = &quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;
 fracs = [15, 29, 89, 54]
@@ -54,7 +54,7 @@ plt.axes(aspect=1) #使坐标轴横纵等距
 plt.pie(x=fracs, labels=labels, autopct=&quot;%.0f%%&quot;, explode=explode)
 plt.show()
 
-</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201458.png alt></p><h2 id=箱形图箱线图boxplot>箱形图（箱线图）：boxplot</h2><p>使用：</p><pre><code class=language-python>import numpy as np
+</code></pre><p>运行：</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201458.png alt></p><h2 id=箱形图箱线图boxplot>箱形图（箱线图）：boxplot</h2><p>使用：</p><pre><code class=language-python>import numpy as np
 import matplotlib.pyplot as plt
 np.random.seed(100)
 data = np.random.normal(size=1000, loc=0, scale=1)
@@ -62,5 +62,5 @@ data = np.random.normal(size=1000, loc=0, scale=1)
 plt.boxplot(data, sym=&quot;o&quot;, whis=1.5)
 plt.show()
 
-</code></pre><p>运行：</p><p><img src=https://oss.myxy99.cn/images/2020/07/18/20200718201541.png alt></p><p>这里就简单距离了基础使用具体的设置的参数还有很多，就需要查看官方文档了。</p><p>官方文档：<a href=https://matplotlib.org/contents.html>https://matplotlib.org/contents.html</a></p></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/python/>python</a></span>
-<span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/matplotlib/>matplotlib</a></span></div></div><div id=fb_comments_container><h2>评论</h2><link rel=stylesheet href=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css><script src=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js></script><script src=https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js></script><div id=gitalk-container></div><script>var gitalk=new Gitalk({clientID:'37ce91532ca8574b41a2',clientSecret:'d7fcfd7d443d61fc40e377cda1690a55c52fb040',repo:'coder2z.github.io',owner:'coder2z',admin:['coder2z'],id:md5(location.pathname),distractionFreeMode:!1,proxy:'https://myxy99.cn/cors/https://github.com/login/oauth/access_token'});gitalk.render('gitalk-container')</script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>
+</code></pre><p>运行：</p><p><img src=https://oss.codery.cn/images/2020/07/18/20200718201541.png alt></p><p>这里就简单距离了基础使用具体的设置的参数还有很多，就需要查看官方文档了。</p><p>官方文档：<a href=https://matplotlib.org/contents.html>https://matplotlib.org/contents.html</a></p></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/python/>python</a></span>
+<span class=separator><a class=tag href=/tags/python/>python</a><a class=tag href=/tags/matplotlib/>matplotlib</a></span></div></div><div id=fb_comments_container><h2>评论</h2><link rel=stylesheet href=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css><script src=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js></script><script src=https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js></script><div id=gitalk-container></div><script>var gitalk=new Gitalk({clientID:'37ce91532ca8574b41a2',clientSecret:'d7fcfd7d443d61fc40e377cda1690a55c52fb040',repo:'coder2z.github.io',owner:'coder2z',admin:['coder2z'],id:md5(location.pathname),distractionFreeMode:!1,proxy:'https://codery.cn/cors/https://github.com/login/oauth/access_token'});gitalk.render('gitalk-container')</script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>

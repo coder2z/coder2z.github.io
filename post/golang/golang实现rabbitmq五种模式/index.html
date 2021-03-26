@@ -51,7 +51,7 @@ func (r *RabbitMQ) failOnErr(err error, message string) {
 	}
 }
 
-</code></pre><h1 id=simple模式>Simple模式</h1><p>Simple模式工作流程：</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200708092914.png alt=Simple模式></p><pre><code class=language-golang>//创建简单模式下RabbitMQ实例
+</code></pre><h1 id=simple模式>Simple模式</h1><p>Simple模式工作流程：</p><p><img src=https://oss.codery.cn/images/2021/03/20200708092914.png alt=Simple模式></p><pre><code class=language-golang>//创建简单模式下RabbitMQ实例
 func NewRabbitMQSimple(queueName string) *RabbitMQ {
 	return NewRabbitMQ(queueName, &quot;&quot;, &quot;&quot;)
 }
@@ -153,7 +153,7 @@ import (
 
 func main()  {
 	rabbitmq := RabbitMQ.NewRabbitMQSimple(&quot;test&quot;)
-	rabbitmq.PublishSimple(&quot;myxy99.cn msg&quot;)
+	rabbitmq.PublishSimple(&quot;codery.cn msg&quot;)
 	fmt.Println(&quot;发送成功!&quot;)
 }
 
@@ -166,7 +166,7 @@ func main() {
 	rabbitmq.ConsumeSimple()
 }
 
-</code></pre><h1 id=work模式>Work模式</h1><p>Work模式工作流程：</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200708093050.png alt=Work模式></p><p>simple模式和work模式其实用的是一套逻辑代码，只是work模式是可以有多个消费者的，work模式起到一个负载均衡的作用。</p><h2 id=work模式publish>work模式publish</h2><pre><code class=language-golang>package main
+</code></pre><h1 id=work模式>Work模式</h1><p>Work模式工作流程：</p><p><img src=https://oss.codery.cn/images/2021/03/20200708093050.png alt=Work模式></p><p>simple模式和work模式其实用的是一套逻辑代码，只是work模式是可以有多个消费者的，work模式起到一个负载均衡的作用。</p><h2 id=work模式publish>work模式publish</h2><pre><code class=language-golang>package main
 
 import (
 	&quot;fmt&quot;
@@ -203,7 +203,7 @@ func main() {
 	rabbitmq.ConsumeSimple()
 }
 
-</code></pre><h1 id=订阅模式>订阅模式</h1><p>订阅模式工作流程：</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200708095831.png alt></p><p>订阅模式的特别是：一个消息被投递到多个队列，一个消息能被多个消费者获取。过程是由生产者将消息发送到exchange(交换机）里，然后exchange通过一系列的规则发送到队列上，然后由绑定对应的消费者进行消息。</p><pre><code class=language-golang>//订阅模式创建RabbitMQ实例
+</code></pre><h1 id=订阅模式>订阅模式</h1><p>订阅模式工作流程：</p><p><img src=https://oss.codery.cn/images/2021/03/20200708095831.png alt></p><p>订阅模式的特别是：一个消息被投递到多个队列，一个消息能被多个消费者获取。过程是由生产者将消息发送到exchange(交换机）里，然后exchange通过一系列的规则发送到队列上，然后由绑定对应的消费者进行消息。</p><pre><code class=language-golang>//订阅模式创建RabbitMQ实例
 func NewRabbitMQPubSub(exchangeName string) *RabbitMQ {
 	//创建RabbitMQ实例
 	rabbitmq := NewRabbitMQ(&quot;&quot;,exchangeName,&quot;&quot;)
@@ -344,7 +344,7 @@ func main() {
 	rabbitmq.RecieveSub()
 }
 
-</code></pre><h1 id=路由模式>路由模式</h1><p>路由模式工作流程：</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200708100024.png alt></p><p>路由模式:一个消息由多个消费者消费的基础上指定由哪些消息者来消费。</p><pre><code class=language-golang>func NewRabbitMQRouting(exchangeName string,routingKey string) *RabbitMQ {
+</code></pre><h1 id=路由模式>路由模式</h1><p>路由模式工作流程：</p><p><img src=https://oss.codery.cn/images/2021/03/20200708100024.png alt></p><p>路由模式:一个消息由多个消费者消费的基础上指定由哪些消息者来消费。</p><pre><code class=language-golang>func NewRabbitMQRouting(exchangeName string,routingKey string) *RabbitMQ {
 	//创建RabbitMQ实例
 	rabbitmq := NewRabbitMQ(&quot;&quot;,exchangeName,routingKey)
 	var err error
@@ -481,7 +481,7 @@ func main()  {
 	mq.RecieveRouting()
 }
 
-</code></pre><h1 id=话题模式>话题模式</h1><p>话题模式工作流程：</p><p><img src=https://oss.myxy99.cn/images/2021/03/20200708100143.png alt></p><p>话题模式：话题模式是在路由模式上演化而来。不同的是我们以通配符的方式来指定我们的消费者。</p><pre><code class=language-golang>//话题模式
+</code></pre><h1 id=话题模式>话题模式</h1><p>话题模式工作流程：</p><p><img src=https://oss.codery.cn/images/2021/03/20200708100143.png alt></p><p>话题模式：话题模式是在路由模式上演化而来。不同的是我们以通配符的方式来指定我们的消费者。</p><pre><code class=language-golang>//话题模式
 //创建RabbitMQ实例
 func NewRabbitMQTopic(exchangeName string,routingKey string) *RabbitMQ {
 	//创建RabbitMQ实例
@@ -625,4 +625,4 @@ func main()  {
 }
 
 </code></pre><p>GitHub地址：<a href=https://github.com/coder2m/Go-RabbitMQ>https://github.com/coder2m/Go-RabbitMQ</a></p></div><div class=post-footer><div class=info><span class=separator><a class=category href=/categories/golang/>golang</a></span>
-<span class=separator><a class=tag href=/tags/golang/>golang</a><a class=tag href=/tags/rabbitmq/>RabbitMQ</a><a class=tag href=/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/>消息队列</a></span></div></div><div id=fb_comments_container><h2>评论</h2><link rel=stylesheet href=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css><script src=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js></script><script src=https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js></script><div id=gitalk-container></div><script>var gitalk=new Gitalk({clientID:'37ce91532ca8574b41a2',clientSecret:'d7fcfd7d443d61fc40e377cda1690a55c52fb040',repo:'coder2z.github.io',owner:'coder2z',admin:['coder2z'],id:md5(location.pathname),distractionFreeMode:!1,proxy:'https://myxy99.cn/cors/https://github.com/login/oauth/access_token'});gitalk.render('gitalk-container')</script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>
+<span class=separator><a class=tag href=/tags/golang/>golang</a><a class=tag href=/tags/rabbitmq/>RabbitMQ</a><a class=tag href=/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/>消息队列</a></span></div></div><div id=fb_comments_container><h2>评论</h2><link rel=stylesheet href=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css><script src=//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js></script><script src=https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.16.0/js/md5.min.js></script><div id=gitalk-container></div><script>var gitalk=new Gitalk({clientID:'37ce91532ca8574b41a2',clientSecret:'d7fcfd7d443d61fc40e377cda1690a55c52fb040',repo:'coder2z.github.io',owner:'coder2z',admin:['coder2z'],id:md5(location.pathname),distractionFreeMode:!1,proxy:'https://codery.cn/cors/https://github.com/login/oauth/access_token'});gitalk.render('gitalk-container')</script></div></div></div></div></div><script type=text/javascript src=/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w=" crossorigin=anonymous></script><script type=application/javascript>var doNotTrack=!1;doNotTrack||(window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga('create','UA-123-45','auto'),ga('send','pageview'))</script><script async src=https://www.google-analytics.com/analytics.js></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-1W3V0HZELM"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date),gtag('config','G-1W3V0HZELM')</script></body></html>
